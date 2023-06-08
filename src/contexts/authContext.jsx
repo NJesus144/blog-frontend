@@ -2,8 +2,8 @@ import { createContext, useState } from "react";
 import { api } from "../services/api/api";
 
 export const AuthContext = createContext();
-// eslint-disable-next-line prettier/prettier, react/prop-types
-export const AuthProvider = ({children}) => {
+
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [dataToken, setDataToken] = useState("");
 
@@ -31,7 +31,7 @@ export const AuthProvider = ({children}) => {
         api.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
         localStorage.setItem("@Auth:token", data.token);
         localStorage.setItem("@Auth:user", JSON.stringify(data.user));
-        console.log("cheguei aqui");
+
         return data.user;
       }
     } catch (err) {
@@ -39,8 +39,7 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-  // eslint-disable-next-line prettier/prettier
-  return(
+  return (
     <AuthContext.Provider
       value={{
         dataToken,

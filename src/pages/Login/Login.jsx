@@ -24,7 +24,6 @@ export const Login = () => {
       return alert("Campo email e senha precisam ser preenchidos");
 
     const user = await signIn(email, password);
-    console.log(user);
 
     if (!user) {
       alert("A sua conta ou senha está incorreta!");

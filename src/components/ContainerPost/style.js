@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: fit-content;
@@ -12,7 +11,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledDivPost = styled(Link)`
+export const StyledDivPost = styled(Link)`
   height: 350px;
   width: 350px;
   text-decoration: none;
@@ -31,7 +30,7 @@ const StyledDivPost = styled(Link)`
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 `;
 
-const StyledBottomPost = styled.div`
+export const StyledBottomPost = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
@@ -39,24 +38,7 @@ const StyledBottomPost = styled.div`
   background-color: white;
 `;
 
-const StyledTitlePost = styled.h1`
-  font-family: Roboto;
+export const StyledTitlePost = styled.h1`
+  font-family: "Roboto";
   text-align: center;
 `;
-
-// eslint-disable-next-line react/prop-types
-export const ContainerPost = ({ posts }) => {
-  return (
-    <Container>
-      <StyledDivPost
-        to={`/post/categoryId/${posts._id}`}
-        image={posts.imgPreview}
-        target="_blank"
-      >
-        <StyledBottomPost>
-          <StyledTitlePost>{posts.title}</StyledTitlePost>
-        </StyledBottomPost>
-      </StyledDivPost>
-    </Container>
-  );
-};

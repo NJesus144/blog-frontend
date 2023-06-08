@@ -4,11 +4,11 @@ import App from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
-import { Home } from "./pages/Home/Index";
-import { Login } from "./pages/Login/Index";
-import { PostId } from "./pages/PostId/Index";
-import { PostList } from "./pages/PostList/Index";
-import { Register } from "./pages/Register/Index";
+import { Home } from "./pages/Home/Home";
+import { Login } from "./pages/Login/Login";
+import { PostId } from "./pages/PostId/PostId";
+import { PostList } from "./pages/PostList/PostList";
+import { Register } from "./pages/Register/Register";
 import GlobalStyle from "./styles/global.js";
 
 const router = createBrowserRouter([

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { api } from "../services/api/api";
+import { EditPostComment } from "../services/commentServices";
 
 const Textarea = styled.textarea`
   width: 100%;
 `;
 
-export const EditPost = ({ text, idPost, idComment, saveEditPost }) => {
+export const EditComment = ({ text, idPost, idComment, saveEditPost }) => {
   const [comment, setComment] = useState(text);
 
   const handleSubmit = async e => {
@@ -14,9 +15,7 @@ export const EditPost = ({ text, idPost, idComment, saveEditPost }) => {
     e.preventDefault();
     try {
       api.defaults.headers.Authorization = `Bearer ${token}`;
-      const response = await api.patch(`/post/comment/${idPost}/${idComment}`, {
-        comment,
-      });
+      const response = await EditPostComment(idPost, idComment, comment);
       console.log(response);
       saveEditPost(false);
     } catch (err) {

@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 const ButtonForm = styled.button`
   width: 100%;
-  padding: 15px;
-  margin-top: 10px;
+  padding: 20px 30px;
   border: none;
-  background: rgb(180, 66, 58);
-  background: linear-gradient(
-    90deg,
-    rgba(180, 66, 58, 1) 0%,
-    rgba(252, 69, 69, 1) 0%,
-    rgba(253, 29, 29, 1) 0%
-  );
-  cursor: pointer;
-  color: white;
-  font-family: Roboto;
-  font-weight: bold;
+  background-color: #4aa884;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+  border-radius: 6px;
+
+  :hover {
+    background-color: #63bb99;
+    cursor: pointer;
+  }
 `;
 
 // eslint-disable-next-line react/prop-types

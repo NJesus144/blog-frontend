@@ -1,49 +1,12 @@
 import { useState } from "react";
-import styled from "styled-components";
+
 import { api } from "../../services/api/api";
 import { deleteComment } from "../../services/commentServices";
-import { CreatePost } from "../CreatePost/Index";
-import { EditPost } from "../EditPost";
+import { CreatePost } from "../CreatePost/CreatePost";
+import { EditComment } from "../EditComment";
+import { BoxButton, BoxComment, Btn, Container, H2, P, Span } from "./style";
 
-const Container = styled.div`
-  width: 100%;
-  margin-bottom: 50px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-// const Tag = styled.div`
-//   background-color: red;
-// `;
-
-const BoxComment = styled.div`
-  font-family: "Roboto";
-  font-size: 18px;
-  height: 100px;
-  word-break: break-word;
-`;
-const BoxButton = styled.div``;
-const H2 = styled.h2`
-  color: #434955;
-  font-family: "Roboto";
-  margin-bottom: 20px;
-`;
-
-const Span = styled.p``;
-const Btn = styled.button`
-  padding: 10px 15px;
-  cursor: pointer;
-  border: none;
-  margin-right: 5px;
-`;
-
-const P = styled.p`
-  font-size: 20px;
-`;
-
-export const SectionComments = ({ post }) => {
+export const CommentSection = ({ post }) => {
   const [editPost, setEditPost] = useState(false);
 
   const handleComment = async idComment => {
@@ -51,9 +14,7 @@ export const SectionComments = ({ post }) => {
 
     try {
       api.defaults.headers.Authorization = `Bearer ${token}`;
-
-      const response = await deleteComment(post.id, idComment);
-      console.log("response =>", response);
+      await deleteComment(post.id, idComment);
     } catch (err) {
       console.log(err);
     }
@@ -62,8 +23,6 @@ export const SectionComments = ({ post }) => {
   const handleEdit = () => {
     setEditPost(true);
   };
-  console.log(post);
-  // console.log(post.comments.userId);
 
   return (
     <>
@@ -83,7 +42,7 @@ export const SectionComments = ({ post }) => {
               </BoxButton>
 
               {editPost && (
-                <EditPost
+                <EditComment
                   idPost={post.id}
                   idComment={item.idComment}
                   text={item.comment}

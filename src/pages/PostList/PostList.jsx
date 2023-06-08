@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { ContainerPost } from "../../components/ContainerPost/Index";
+import { ContainerPost } from "../../components/ContainerPost/ContainerPost";
 
 import { ContainerMainSection } from "../../layout/ContainerMainSection";
 import { getAllPostsCategory } from "../../services/postsServices";

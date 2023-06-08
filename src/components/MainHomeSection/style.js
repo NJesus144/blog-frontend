@@ -9,7 +9,7 @@ export const ImgCarouselContainer = styled.div`
   background-size: cover;
   margin-top: 70px;
 `;
-export const ContainerTopPost = styled.div`
+export const ContainerTopPost = styled.main`
   margin-top: 100px;
 `;
 

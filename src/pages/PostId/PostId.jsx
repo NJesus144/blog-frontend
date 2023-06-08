@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ContainerPostId } from "../../components/ContainerPostId/Index";
+import { ContainerPostId } from "../../components/ContainerPostId/ContainerPostId";
 import { AuthContext } from "../../contexts/authContext";
 import { getPostById } from "../../services/postsServices";
 import { configToken } from "../../services/token";
@@ -10,14 +10,6 @@ export const PostId = () => {
   const { signed, loadingStoreData } = useContext(AuthContext);
 
   const [post, setPost] = useState([]);
-
-  // const token = localStorage.getItem("@Auth:token");
-
-  // const configToken = {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // };
 
   const setOnlyPost = async () => {
     try {

@@ -33,7 +33,7 @@ const imgCarousel = [
   },
 ];
 
-export const ContainerNotice = () => {
+export const MainHomeSection = () => {
   const [post, setPost] = useState([]);
   const [lastPosts, setLastPosts] = useState([]);
 
