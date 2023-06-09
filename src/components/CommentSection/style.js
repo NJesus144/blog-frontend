@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  max-width: 1000px;
   margin-bottom: 50px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 20px;
@@ -9,9 +10,6 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-// const Tag = styled.div`
-//   background-color: red;
-// `;
 
 export const BoxComment = styled.div`
   font-family: "Roboto";
@@ -34,6 +32,11 @@ export const Btn = styled.button`
   cursor: pointer;
   border: none;
   margin-right: 5px;
+  transition: all 0.3s;
+
+  :hover {
+    background-color: #e0e0e0;
+  }
 `;
 
 export const P = styled.p`

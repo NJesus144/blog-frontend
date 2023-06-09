@@ -12,7 +12,6 @@ export const PostId = () => {
   const { signed, loadingStoreData } = useContext(AuthContext);
 
   const { data, isLoading, error } = useFetch(id, configToken);
-  console.log("post id", data);
 
   if (error) return alert("Error");
   if (isLoading) return console.log("carregando...");

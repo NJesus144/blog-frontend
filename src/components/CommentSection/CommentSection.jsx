@@ -8,10 +8,9 @@ import { CreatePostComment } from "../CreatePostComment/CreatePostComment";
 import { EditComment } from "../EditComment";
 import { BoxButton, BoxComment, Btn, Container, H2, P, Span } from "./style";
 
-export const CommentSection = ({ post }) => {
+export const CommentSection = ({ post, idComment, text }) => {
   const { mutate } = useFetch(post.id, configToken);
-  const { comments } = post;
-  console.log(comments);
+  console.log("post =>", post, "id =>", idComment, "text =>", text);
   const [editPost, setEditPost] = useState(false);
 
   const handleDeleteComment = async idComment => {
@@ -29,14 +28,6 @@ export const CommentSection = ({ post }) => {
   const handleEdit = idComment => {
     setEditPost(true);
     console.log(idComment);
-    // return (
-    //   <EditComment
-    //     idPost={post.id}
-    //     idComment={idComment}
-    //     text={comment}
-    //     saveEditPost={setEditPost}
-    //   />
-    // );
   };
 
   return (
@@ -44,36 +35,31 @@ export const CommentSection = ({ post }) => {
       <H2>Deixe um comentário</H2>
       <CreatePostComment post={post} />
       {post.comments ? (
-        post.comments.map(item => (
-          <>
-            {/* <Tag key={item.userId}>{item.createdAt}</Tag> */}
-            <Container key={item.idComment}>
-              <BoxComment>
-                <Span>{item.comment}</Span>
-              </BoxComment>
-              <BoxButton>
-                <Btn onClick={() => handleDeleteComment(item.idComment)}>
-                  Excluir
-                </Btn>
-                <Btn onClick={() => handleEdit(item.idComment, item.comment)}>
-                  Editar comentário
-                </Btn>
-              </BoxButton>
+        <>
+          {/* <Tag key={item.userId}>{item.createdAt}</Tag> */}
+          <Container>
+            <BoxComment>
+              <Span>{text}</Span>
+            </BoxComment>
+            <BoxButton>
+              <Btn onClick={() => handleDeleteComment(idComment)}>Excluir</Btn>
+              <Btn onClick={() => handleEdit(idComment, text)}>
+                Editar comentário
+              </Btn>
+            </BoxButton>
 
-              {editPost && (
-                <>
-                  <EditComment
-                    idPost={post.id}
-                    idComment={item.idComment}
-                    text={item.comment}
-                    saveEditPost={setEditPost}
-                  />
-                  <p>{item.idComment}</p>
-                </>
-              )}
-            </Container>
-          </>
-        ))
+            {editPost && (
+              <>
+                <EditComment
+                  idPost={post.id}
+                  idComment={idComment}
+                  text={text}
+                  saveEditPost={setEditPost}
+                />
+              </>
+            )}
+          </Container>
+        </>
       ) : (
         <P>vazio</P>
       )}

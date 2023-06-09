@@ -4,6 +4,7 @@ import App from "./App";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
+import { AllPosts } from "./pages/AllPosts/AllPosts";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
 import { PostId } from "./pages/PostId/PostId";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <PostId />,
       },
     ],
+  },
+  {
+    path: "/post/allposts",
+    element: <AllPosts />,
   },
   {
     path: "/register",

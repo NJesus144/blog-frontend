@@ -23,7 +23,14 @@ export const ContainerPostId = ({ post }) => {
           ""
         )}
       </Container>
-      <CommentSection post={post} />
+      {post.comments.map(commentBlog => (
+        <CommentSection
+          key={commentBlog.idComment}
+          post={post}
+          idComment={commentBlog.idComment}
+          text={commentBlog.comment}
+        />
+      ))}
     </ContainerMainSection>
   );
 };

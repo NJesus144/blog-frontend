@@ -13,6 +13,32 @@ export const Container = styled.div`
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   padding-bottom: 20px;
   padding-top: 20px;
+
+  @media (max-width: 420px) {
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+    div {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+    div {
+      padding: 8px;
+    }
+  }
 `;
 
 export const StyledImage = styled.div`

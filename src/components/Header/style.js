@@ -13,6 +13,8 @@ export const ContainerHeader = styled.header`
   z-index: 999;
 `;
 
+export const NavLink = styled(Link)``;
+
 export const Container = styled.div`
   max-width: 1200px;
   margin: auto;

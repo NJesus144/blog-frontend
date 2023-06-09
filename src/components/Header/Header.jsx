@@ -1,4 +1,4 @@
-import { Container, ContainerHeader, Logo, Nav } from "./style";
+import { Container, ContainerHeader, Logo, Nav, NavLink } from "./style";
 
 export const Header = () => {
   // const storageUser = localStorage.getItem("@Auth:user");
@@ -10,7 +10,15 @@ export const Header = () => {
         {/* <P>{user && `Olá, @${user.username}!`}</P> */}
 
         <Nav>
-          <h3>Login</h3>
+          <NavLink to={`/post/allposts`} target="_blank">
+            Mais Postagens
+          </NavLink>
+          <NavLink to={`/login`} target="_blank">
+            Login
+          </NavLink>
+          <NavLink to={`/register`} target="_blank">
+            Cadastro
+          </NavLink>
         </Nav>
       </Container>
     </ContainerHeader>
