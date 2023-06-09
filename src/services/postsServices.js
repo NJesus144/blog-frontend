@@ -1,5 +1,6 @@
 import { api } from "./api/api";
 import { configToken } from "./token";
+
 export function getAllPostsCategory(id) {
   const response = api.get(`/category/${id}`);
   return response;
@@ -7,6 +8,11 @@ export function getAllPostsCategory(id) {
 
 export function getPostById(id, configToken) {
   const response = api.get(`/post/${id}`, configToken);
+  return response;
+}
+
+export function getUpdatedPost(url, token) {
+  const response = api.get(url, token);
   return response;
 }
 
@@ -20,7 +26,7 @@ export async function getLastPosts() {
   return response.data;
 }
 
-export async function createPostBlog(id, text) {
+export async function createPostCommentBlog(id, text) {
   const response = await api.patch(
     `/post/comment/${id}`,
     {

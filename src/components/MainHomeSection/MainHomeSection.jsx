@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import useSWR from "swr";
 import { ContainerMainSection } from "../../layout/ContainerMainSection";
 import { getLastPosts, getTopPost } from "../../services/postsServices";
 import {
@@ -33,18 +34,23 @@ const imgCarousel = [
   },
 ];
 
+// const fetcher = url => api.get(url).then(res => res.data.news);
+
 export const MainHomeSection = () => {
-  const [post, setPost] = useState([]);
+  // const [post, setPost] = useState([]);
   const [lastPosts, setLastPosts] = useState([]);
 
-  useEffect(() => {
-    async function resPostTop() {
-      const response = await getTopPost();
-      setPost(response);
-    }
+  const { data } = useSWR("/post/top", getTopPost);
+  console.log("sou o data", data);
 
-    resPostTop();
-  }, []);
+  // useEffect(() => {
+  //   async function resPostTop() {
+  //     const response = await getTopPost();
+  //     setPost(response);
+  //   }
+
+  //   resPostTop();
+  // }, []);
 
   useEffect(() => {
     async function resLastPosts() {
@@ -53,7 +59,7 @@ export const MainHomeSection = () => {
     }
     resLastPosts();
   }, []);
-  console.log(lastPosts);
+
   return (
     <>
       <Carousel
@@ -71,10 +77,10 @@ export const MainHomeSection = () => {
       <ContainerMainSection>
         <ContainerTopPost>
           <TopPost>
-            <ContainerImg image={post.banner} />
+            <ContainerImg image={data?.banner} />
             <BottomTopPost>
-              <H1 to={`/post/categoryId/${post.id}`} target="_blank">
-                {post.title}fhfg
+              <H1 to={`/post/categoryId/${data?.id}`} target="_blank">
+                {data?.title}fhfg
               </H1>
               <hr size="1" />
               <div>
@@ -82,7 +88,7 @@ export const MainHomeSection = () => {
                   Saiba como manter hábitos saudáveis ajuda na prevenção de
                   doenças do coração.
                 </p>
-                <ALink to={`/post/categoryId/${post.id}`} target="_blank">
+                <ALink to={`/post/categoryId/${data?.id}`} target="_blank">
                   LEIA MAIS
                 </ALink>
               </div>
