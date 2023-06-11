@@ -21,8 +21,8 @@ export async function getTopPost() {
   return response.data.news;
 }
 
-export async function getLastPosts() {
-  const response = await api.get("/post?limit=6&offset=0");
+export async function getLastPosts(limit, offset) {
+  const response = await api.get(`/post?limit=${limit}&offset=${offset}`);
   return response.data;
 }
 

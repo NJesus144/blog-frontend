@@ -13,21 +13,12 @@ export const PostId = () => {
 
   const { data, isLoading, error } = useFetch(id, configToken);
 
-  if (error) return alert("Error");
   if (isLoading) return console.log("carregando...");
+  if (error) {
+    if (error.response.data.message === "Token invalid!")
+      return navigate("/login");
+  }
 
-  const setOnlyPost = async () => {
-    try {
-      // const response = await getPostById(id, configToken);
-      // setPost(response.data);
-    } catch (err) {
-      if (err.response.data.message === "Token invalid!") {
-        return navigate("/login");
-      }
-    }
-  };
-
-  setOnlyPost();
   loadingStoreData();
 
   return <>{signed && <ContainerPostId post={data.data} />}</>;

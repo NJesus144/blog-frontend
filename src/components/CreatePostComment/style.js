@@ -23,6 +23,7 @@ export const Textarea = styled.textarea`
 
 export const Form = styled.form`
   max-width: 1000px;
+
   button {
     width: 250px;
   }

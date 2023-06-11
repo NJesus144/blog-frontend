@@ -17,9 +17,18 @@ const ButtonForm = styled.button`
     background-color: #63bb99;
     cursor: pointer;
   }
+
+  :disabled {
+    background-color: #dfdcdc;
+    cursor: default;
+  }
 `;
 
 // eslint-disable-next-line react/prop-types
-export const Button = ({ children }) => {
-  return <ButtonForm>{children}</ButtonForm>;
+export const Button = ({ children, disabled, ...props }) => {
+  return (
+    <ButtonForm disabled={disabled} {...props}>
+      {children}
+    </ButtonForm>
+  );
 };

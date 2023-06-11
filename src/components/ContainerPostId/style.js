@@ -41,6 +41,12 @@ export const Container = styled.div`
   }
 `;
 
+export const H2 = styled.h2`
+  color: #434955;
+  font-family: "Roboto";
+  margin-bottom: 20px;
+`;
+
 export const StyledImage = styled.div`
   background-image: url("${props => props.image}");
   background-size: cover;

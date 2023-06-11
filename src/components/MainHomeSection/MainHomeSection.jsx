@@ -33,29 +33,17 @@ const imgCarousel = [
     img: "https://news.gympass.com/wp-content/uploads/2017/07/shutterstock_516665767-1-1280x640.jpg",
   },
 ];
-
-// const fetcher = url => api.get(url).then(res => res.data.news);
-
+const limit = 6;
+const offset = 0;
 export const MainHomeSection = () => {
-  // const [post, setPost] = useState([]);
   const [lastPosts, setLastPosts] = useState([]);
 
   const { data } = useSWR("/post/top", getTopPost);
-  console.log("sou o data", data);
-
-  // useEffect(() => {
-  //   async function resPostTop() {
-  //     const response = await getTopPost();
-  //     setPost(response);
-  //   }
-
-  //   resPostTop();
-  // }, []);
 
   useEffect(() => {
     async function resLastPosts() {
-      const response = await getLastPosts();
-      setLastPosts(response);
+      const response = await getLastPosts(limit, offset);
+      setLastPosts(response.results);
     }
     resLastPosts();
   }, []);

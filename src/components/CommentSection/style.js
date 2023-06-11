@@ -7,6 +7,7 @@ export const Container = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 20px;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -14,16 +15,12 @@ export const Container = styled.div`
 export const BoxComment = styled.div`
   font-family: "Roboto";
   font-size: 18px;
-  height: 100px;
+  height: 150px;
+
   word-break: break-word;
 `;
 export const BoxButton = styled.div`
   display: flex;
-`;
-export const H2 = styled.h2`
-  color: #434955;
-  font-family: "Roboto";
-  margin-bottom: 20px;
 `;
 
 export const Span = styled.p``;
@@ -33,6 +30,7 @@ export const Btn = styled.button`
   border: none;
   margin-right: 5px;
   transition: all 0.3s;
+  margin-top: 5px;
 
   :hover {
     background-color: #e0e0e0;

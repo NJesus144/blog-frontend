@@ -7,6 +7,7 @@ import { Form, Textarea } from "./style";
 
 export const CreatePostComment = ({ post }) => {
   const [text, setText] = useState("");
+  console.log(post);
   const { mutate } = useFetch(post.id, configToken);
 
   const onSubmit = async e => {
@@ -14,8 +15,8 @@ export const CreatePostComment = ({ post }) => {
 
     try {
       const response = await createPostCommentBlog(post.id, text);
+
       if (response.status === 201) {
-        console.log("chegou aqui");
         mutate();
         setText("");
       }

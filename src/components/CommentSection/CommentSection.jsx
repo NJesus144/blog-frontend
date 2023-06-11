@@ -4,13 +4,11 @@ import { useFetch } from "../../hooks/useFetch";
 import { api } from "../../services/api/api";
 import { deleteComment } from "../../services/commentServices";
 import { configToken } from "../../services/token";
-import { CreatePostComment } from "../CreatePostComment/CreatePostComment";
 import { EditComment } from "../EditComment";
-import { BoxButton, BoxComment, Btn, Container, H2, P, Span } from "./style";
+import { BoxButton, BoxComment, Btn, Container, Span } from "./style";
 
 export const CommentSection = ({ post, idComment, text }) => {
   const { mutate } = useFetch(post.id, configToken);
-  console.log("post =>", post, "id =>", idComment, "text =>", text);
   const [editPost, setEditPost] = useState(false);
 
   const handleDeleteComment = async idComment => {
@@ -32,11 +30,8 @@ export const CommentSection = ({ post, idComment, text }) => {
 
   return (
     <>
-      <H2>Deixe um comentário</H2>
-      <CreatePostComment post={post} />
       {post.comments ? (
         <>
-          {/* <Tag key={item.userId}>{item.createdAt}</Tag> */}
           <Container>
             <BoxComment>
               <Span>{text}</Span>
@@ -61,7 +56,7 @@ export const CommentSection = ({ post, idComment, text }) => {
           </Container>
         </>
       ) : (
-        <P>vazio</P>
+        ""
       )}
     </>
   );
