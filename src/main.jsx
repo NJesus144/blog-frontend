@@ -10,6 +10,7 @@ import { Login } from "./pages/Login/Login";
 import { PostId } from "./pages/PostId/PostId";
 import { PostList } from "./pages/PostList/PostList";
 import { Register } from "./pages/Register/Register";
+import { CreateBlogPost } from "./pages/CreateBlogPost/CreateBlogPost";
 import GlobalStyle from "./styles/global.js";
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <PostId />,
       },
     ],
+  },
+  {
+    path: "/post/createblog",
+    element: <CreateBlogPost />,
   },
   {
     path: "/post/allposts",

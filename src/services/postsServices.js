@@ -36,3 +36,22 @@ export async function createPostCommentBlog(id, text) {
   );
   return response;
 }
+
+export async function createPostWithinTheBlog(
+  title,
+  description,
+  text,
+  banner
+) {
+  const response = await api.post(
+    "/post",
+    {
+      title,
+      description,
+      text,
+      banner,
+    },
+    configToken
+  );
+  return response.data;
+}

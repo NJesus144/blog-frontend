@@ -7,7 +7,6 @@ import { Form, Textarea } from "./style";
 
 export const CreatePostComment = ({ post }) => {
   const [text, setText] = useState("");
-  console.log(post);
   const { mutate } = useFetch(post.id, configToken);
 
   const onSubmit = async e => {

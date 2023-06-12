@@ -14,16 +14,13 @@ export const ContainerPostId = ({ post }) => {
   return (
     <ContainerMainSection>
       <Container>
-        <MainTitle>{post.subtitle}</MainTitle>
+        <MainTitle>{post.title}</MainTitle>
 
         <StyledImage image={post.banner} />
-        {post.sections ? (
-          <DivDescription>
-            <Description>{post.sections[0].text}</Description>
-          </DivDescription>
-        ) : (
-          ""
-        )}
+
+        <DivDescription>
+          <Description>{post.text}</Description>
+        </DivDescription>
       </Container>
       <H2>Deixe um comentário</H2>
       <CreatePostComment post={post} />

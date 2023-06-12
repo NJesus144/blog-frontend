@@ -29,6 +29,7 @@ export const Login = () => {
       alert("A sua conta ou senha está incorreta!");
     } else {
       alert(`Bem vindo ${user.username}!`);
+
       navigate("/");
     }
   };

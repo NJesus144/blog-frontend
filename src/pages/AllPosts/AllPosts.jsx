@@ -33,14 +33,18 @@ export const AllPosts = () => {
 
     paginationPosts(limit, offset);
   };
-
+  console.log(paginationPost.results);
   return (
     <>
       <Header />
       <Container>
         <MainContainerWrapper>
           {paginationPost.results?.map(item => (
-            <ContainerPosts key={item.id}>
+            <ContainerPosts
+              to={`/post/categoryId/${item.id}`}
+              target="_blank"
+              key={item.id}
+            >
               <ImgLastPosts image={item.banner} />
               <StyledP>{item.title}</StyledP>
             </ContainerPosts>

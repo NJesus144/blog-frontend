@@ -10,7 +10,6 @@ export const PostId = () => {
   const navigate = useNavigate();
 
   const { signed, loadingStoreData } = useContext(AuthContext);
-
   const { data, isLoading, error } = useFetch(id, configToken);
 
   if (isLoading) return console.log("carregando...");

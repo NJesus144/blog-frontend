@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 export const ImgCarouselContainer = styled.div`
   background-image: url("${props => props.image}");
-  height: 535px;
+  height: 600px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin-top: 70px;
 `;
 export const ContainerTopPost = styled.main`
   margin-top: 100px;

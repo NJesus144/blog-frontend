@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import useSWR from "swr";
+import { useGetLastPost } from "../../hooks/getLastPost";
 import { ContainerMainSection } from "../../layout/ContainerMainSection";
-import { getLastPosts, getTopPost } from "../../services/postsServices";
+import { getLastPosts } from "../../services/postsServices";
 import {
   ALink,
   BottomTopPost,
@@ -38,8 +38,8 @@ const offset = 0;
 export const MainHomeSection = () => {
   const [lastPosts, setLastPosts] = useState([]);
 
-  const { data } = useSWR("/post/top", getTopPost);
-
+  const { data } = useGetLastPost("/post/top");
+  console.log(data);
   useEffect(() => {
     async function resLastPosts() {
       const response = await getLastPosts(limit, offset);
@@ -68,14 +68,11 @@ export const MainHomeSection = () => {
             <ContainerImg image={data?.banner} />
             <BottomTopPost>
               <H1 to={`/post/categoryId/${data?.id}`} target="_blank">
-                {data?.title}fhfg
+                {data?.title}
               </H1>
               <hr size="1" />
               <div>
-                <p>
-                  Saiba como manter hábitos saudáveis ajuda na prevenção de
-                  doenças do coração.
-                </p>
+                <p>{data?.description}</p>
                 <ALink to={`/post/categoryId/${data?.id}`} target="_blank">
                   LEIA MAIS
                 </ALink>
@@ -87,9 +84,9 @@ export const MainHomeSection = () => {
         <MainContainerWrapper>
           {lastPosts.map(item => (
             <ContainerPosts
-              to={`/post/categoryId/${item._id}`}
+              to={`/post/categoryId/${item.id}`}
               target="_blank"
-              key={item._id}
+              key={item.id}
             >
               <ImgLastPosts image={item.banner} />
               <StyledP>{item.title}</StyledP>
