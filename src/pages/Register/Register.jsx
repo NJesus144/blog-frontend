@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../../services/userServices";
-
 import { Button } from "../../components/inputs/Button";
 import { Form } from "../../components/inputs/Form";
 import { Input } from "../../components/inputs/Input";
 import { H2 } from "../../components/typography/H2";
 import { ParagraphLink } from "../../components/typography/ParagraphLink";
 import { ContainerFom } from "../../layout/ContainerForm/Index";
+import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
+import { createUser } from "../../services/userServices";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -33,33 +33,35 @@ export const Register = () => {
   };
 
   return (
-    <ContainerFom>
-      <H2>Crie sua conta.</H2>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Nome"
-          onChange={e => setName(e.target.value)}
-        />
-        <Input
-          type="text"
-          placeholder="Usuario"
-          onChange={e => setUsername(e.target.value)}
-        />
-        <Input
-          type="email"
-          placeholder="E-mail"
-          onChange={e => setEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Senha"
-          onChange={e => setPassword(e.target.value)}
-        />
-        Já possui uma conta?
-        <ParagraphLink path={"login"}>Entre!</ParagraphLink>
-        <Button type="submit">CADASTRAR</Button>
-      </Form>
-    </ContainerFom>
+    <ImageWithSpace>
+      <ContainerFom>
+        <H2>Crie sua conta.</H2>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            placeholder="Nome"
+            onChange={e => setName(e.target.value)}
+          />
+          <Input
+            type="text"
+            placeholder="Usuario"
+            onChange={e => setUsername(e.target.value)}
+          />
+          <Input
+            type="email"
+            placeholder="E-mail"
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Senha"
+            onChange={e => setPassword(e.target.value)}
+          />
+          Já possui uma conta?
+          <ParagraphLink path={"login"}>Entre!</ParagraphLink>
+          <Button type="submit">CADASTRAR</Button>
+        </Form>
+      </ContainerFom>
+    </ImageWithSpace>
   );
 };

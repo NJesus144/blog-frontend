@@ -8,14 +8,19 @@ import {
   H2,
   MainTitle,
   StyledImage,
+  StyleParagraph,
 } from "./style";
 
 export const ContainerPostId = ({ post }) => {
+  console.log(post);
   return (
     <ContainerMainSection>
       <Container>
         <MainTitle>{post.title}</MainTitle>
-
+        <StyleParagraph>
+          <span>Por </span>
+          {post.username}
+        </StyleParagraph>
         <StyledImage image={post.banner} />
 
         <DivDescription>

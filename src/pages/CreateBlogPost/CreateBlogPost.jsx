@@ -53,6 +53,7 @@ export const CreateBlogPost = () => {
 
     try {
       // api.defaults.headers.Authorization = `Bearer ${configToken}`;
+
       const res = await createPostWithinTheBlog(
         title,
         description,

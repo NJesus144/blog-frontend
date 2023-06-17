@@ -15,6 +15,7 @@ import {
   ImgCarouselContainer,
   ImgLastPosts,
   MainContainerWrapper,
+  StyleParagraph,
   StyledP,
   TopPost,
 } from "./style.js";
@@ -39,7 +40,7 @@ export const MainHomeSection = () => {
   const [lastPosts, setLastPosts] = useState([]);
 
   const { data } = useGetLastPost("/post/top");
-  console.log(data);
+
   useEffect(() => {
     async function resLastPosts() {
       const response = await getLastPosts(limit, offset);
@@ -65,6 +66,10 @@ export const MainHomeSection = () => {
       <ContainerMainSection>
         <ContainerTopPost>
           <TopPost>
+            <StyleParagraph>
+              <span>Por </span>
+              {data?.username}
+            </StyleParagraph>
             <ContainerImg image={data?.banner} />
             <BottomTopPost>
               <H1 to={`/post/categoryId/${data?.id}`} target="_blank">

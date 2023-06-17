@@ -22,6 +22,16 @@ export const ContainerImg = styled.div`
   background-size: cover;
 `;
 
+export const StyleParagraph = styled.p`
+  color: #333333;
+  font-family: "inter";
+  padding: 10px;
+
+  span {
+    color: #74768f;
+  }
+`;
+
 export const H1 = styled(Link)`
   font-family: "inter";
   font-size: 42px;

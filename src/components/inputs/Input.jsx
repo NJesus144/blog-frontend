@@ -7,18 +7,18 @@ const InputField = styled.input`
   margin-bottom: 10px;
   width: 100%;
   font-size: 18px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #4b4a4a;
   font-family: Roboto;
   outline: none;
   background-color: #ebebeb;
-  border: 2px solid #6eb198;
+  border: 2px solid #ebebeb;
   ::placeholder {
     font-size: 18px;
   }
 
   :focus {
-    border: 2px solid #267255;
+    border: 2px solid #a626a6;
   }
 `;
 

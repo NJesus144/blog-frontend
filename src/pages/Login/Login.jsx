@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../../contexts/authContext";
+import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
 
 import { Button } from "../../components/inputs/Button";
 import { Form } from "../../components/inputs/Form";
@@ -35,25 +35,27 @@ export const Login = () => {
   };
 
   return (
-    <ContainerFom>
-      <H2>Entre com a sua conta.</H2>
-      <Form onSubmit={handleForm}>
-        <Input
-          type="email"
-          placeholder="Email"
-          onChange={e => setEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Senha"
-          onChange={e => setPassword(e.target.value)}
-        />
-        <p>
-          Ainda não tem uma conta?{" "}
-          <ParagraphLink path={"register"}>Crie uma!</ParagraphLink>
-        </p>
-        <Button type="submit">ENTRAR</Button>
-      </Form>
-    </ContainerFom>
+    <ImageWithSpace>
+      <ContainerFom>
+        <H2>Entre com a sua conta.</H2>
+        <Form onSubmit={handleForm}>
+          <Input
+            type="email"
+            placeholder="Email"
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Senha"
+            onChange={e => setPassword(e.target.value)}
+          />
+          <p>
+            Ainda não tem uma conta?{" "}
+            <ParagraphLink path={"register"}>Crie uma!</ParagraphLink>
+          </p>
+          <Button type="submit">ENTRAR</Button>
+        </Form>
+      </ContainerFom>
+    </ImageWithSpace>
   );
 };

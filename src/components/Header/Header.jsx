@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { AuthContext } from "../../contexts/authContext";
 import { validUserToken } from "../../services/auth";
-import { configToken } from "../../services/token";
+
 import {
   Container,
   ContainerHeader,
@@ -15,24 +14,30 @@ import {
 export const Header = () => {
   const [isValidUser, setIsValidUser] = useState("");
   const navigate = useNavigate();
-
   const storageUser = localStorage.getItem("@Auth:user");
   const user = JSON.parse(storageUser);
-  // const { signed } = useContext(AuthContext);
-
-  const removeUser = () => {
-    localStorage.removeItem("@Auth:user");
-    localStorage.removeItem("@Auth:token");
-    navigate("/");
-  };
 
   useEffect(() => {
     async function validToken() {
-      const response = await validUserToken(configToken);
+      const response = await validUserToken();
       setIsValidUser(response.data.status_token);
     }
     validToken();
   }, []);
+
+  if (!user) return navigate("login");
+
+  const removeUser = () => {
+    localStorage.removeItem("@Auth:user");
+    localStorage.removeItem("@Auth:token");
+
+    const userLogado = localStorage.getItem("@Auth:user");
+    const tokenUser = localStorage.getItem("@Auth:token");
+
+    if (!userLogado && !tokenUser) {
+      return navigate("/login");
+    }
+  };
 
   return (
     <ContainerHeader color={"#fff"}>

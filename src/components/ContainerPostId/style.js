@@ -41,6 +41,16 @@ export const Container = styled.div`
   }
 `;
 
+export const StyleParagraph = styled.p`
+  color: #333333;
+  font-family: "inter";
+  padding: 10px;
+
+  span {
+    color: #74768f;
+  }
+`;
+
 export const H2 = styled.h2`
   color: #434955;
   font-family: "Roboto";

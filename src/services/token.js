@@ -4,3 +4,14 @@ export const configToken = {
     Authorization: `Bearer ${token}`,
   },
 };
+
+// export const configToken = () => {
+//   if (token) {
+//     const tokenConfig = {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
+//     return tokenConfig;
+//   }
+// };
