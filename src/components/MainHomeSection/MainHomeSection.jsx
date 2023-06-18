@@ -5,6 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
 import { getLastPosts } from "../../services/postsServices";
+import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
 import {
   Badge,
   BadgeBase,
@@ -17,6 +18,7 @@ import {
   ColumnPosts,
   Container,
   ContainerImg,
+  ContainerRowPosts,
   Content,
   ContentBlogPost,
   ContentColumnBlogPostCard,
@@ -32,6 +34,8 @@ import {
   StyleParagraph,
   StyledParagraphLink,
   Text,
+  TitleSection,
+  SectionRowAndHeader,
 } from "./style.js";
 
 const imgCarousel = [
@@ -134,6 +138,21 @@ export const MainHomeSection = () => {
           </Content>
         </Container>
       </MainContainerLastPosts>
+      <SectionRowAndHeader>
+        <TitleSection>Todos as postagens</TitleSection>
+        <ContainerRowPosts>
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+          <CardPostBlog />
+        </ContainerRowPosts>
+      </SectionRowAndHeader>
     </>
   );
 };
