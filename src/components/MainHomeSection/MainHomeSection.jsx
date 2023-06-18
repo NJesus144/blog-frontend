@@ -1,23 +1,37 @@
 // import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
-import { ContainerMainSection } from "../../layout/ContainerMainSection";
 import { getLastPosts } from "../../services/postsServices";
 import {
-  ALink,
-  BottomTopPost,
+  Badge,
+  BadgeBase,
+  BlogPostCard,
+  Category,
+  ColumnBadge,
+  ColumnBadgeBase,
+  ColumnBlogPostCard,
+  ColumnCategory,
+  ColumnPosts,
+  Container,
   ContainerImg,
-  ContainerPosts,
-  ContainerTopPost,
-  H1,
+  Content,
+  ContentBlogPost,
+  ContentColumnBlogPostCard,
+  DescriptionBlogText,
+  HeadAndIcon,
+  HeadAndTextBox,
+  HeadAndTextDescription,
+  HeadingAndTextColumn,
+  IconWrap,
   ImgCarouselContainer,
-  ImgLastPosts,
-  MainContainerWrapper,
+  ImgColumnBlogPostCard,
+  MainContainerLastPosts,
   StyleParagraph,
-  StyledP,
-  TopPost,
+  StyledParagraphLink,
+  Text,
 } from "./style.js";
 
 const imgCarousel = [
@@ -34,8 +48,8 @@ const imgCarousel = [
     img: "https://news.gympass.com/wp-content/uploads/2017/07/shutterstock_516665767-1-1280x640.jpg",
   },
 ];
-const limit = 6;
-const offset = 0;
+const limit = 2;
+const offset = 1;
 export const MainHomeSection = () => {
   const [lastPosts, setLastPosts] = useState([]);
 
@@ -48,7 +62,7 @@ export const MainHomeSection = () => {
     }
     resLastPosts();
   }, []);
-
+  console.log(data);
   return (
     <>
       <Carousel
@@ -63,42 +77,63 @@ export const MainHomeSection = () => {
         ))}
       </Carousel>
 
-      <ContainerMainSection>
-        <ContainerTopPost>
-          <TopPost>
-            <StyleParagraph>
-              <span>Por </span>
-              {data?.username}
-            </StyleParagraph>
-            <ContainerImg image={data?.banner} />
-            <BottomTopPost>
-              <H1 to={`/post/categoryId/${data?.id}`} target="_blank">
-                {data?.title}
-              </H1>
-              <hr size="1" />
-              <div>
-                <p>{data?.description}</p>
-                <ALink to={`/post/categoryId/${data?.id}`} target="_blank">
-                  LEIA MAIS
-                </ALink>
-              </div>
-            </BottomTopPost>
-          </TopPost>
-        </ContainerTopPost>
-
-        <MainContainerWrapper>
-          {lastPosts.map(item => (
-            <ContainerPosts
-              to={`/post/categoryId/${item.id}`}
-              target="_blank"
-              key={item.id}
-            >
-              <ImgLastPosts image={item.banner} />
-              <StyledP>{item.title}</StyledP>
-            </ContainerPosts>
-          ))}
-        </MainContainerWrapper>
-      </ContainerMainSection>
+      <MainContainerLastPosts>
+        <Container>
+          <StyleParagraph>Postagens recentes</StyleParagraph>
+          <Content>
+            <BlogPostCard>
+              <ContainerImg image={data?.banner} />
+              <ContentBlogPost>
+                <HeadAndTextBox>
+                  <Text>
+                    <span>Por </span>
+                    {data?.username}
+                  </Text>
+                  <HeadAndIcon>
+                    <StyledParagraphLink to={`/post/categoryId/${data?.id}`}>
+                      {data?.title}
+                    </StyledParagraphLink>
+                    <IconWrap to={`/post/categoryId/${data?.id}`}>
+                      <FiArrowUpRight size={24} />
+                    </IconWrap>
+                  </HeadAndIcon>
+                  <DescriptionBlogText>{data?.description}</DescriptionBlogText>
+                </HeadAndTextBox>
+                <Category>
+                  <Badge>
+                    <BadgeBase>
+                      <span>Tecnologia</span>
+                    </BadgeBase>
+                  </Badge>
+                </Category>
+              </ContentBlogPost>
+            </BlogPostCard>
+            <ColumnPosts>
+              {lastPosts.map(item => (
+                <ColumnBlogPostCard key={item.id}>
+                  <ImgColumnBlogPostCard image={item.banner} />
+                  <ContentColumnBlogPostCard>
+                    <HeadingAndTextColumn>
+                      <p>{item.username}</p>
+                      <HeadAndTextDescription>
+                        <p>{item.title}</p>
+                        <span>{item.description}</span>
+                      </HeadAndTextDescription>
+                    </HeadingAndTextColumn>
+                    <ColumnCategory>
+                      <ColumnBadge>
+                        <ColumnBadgeBase>
+                          <span>tecnologia</span>
+                        </ColumnBadgeBase>
+                      </ColumnBadge>
+                    </ColumnCategory>
+                  </ContentColumnBlogPostCard>
+                </ColumnBlogPostCard>
+              ))}
+            </ColumnPosts>
+          </Content>
+        </Container>
+      </MainContainerLastPosts>
     </>
   );
 };

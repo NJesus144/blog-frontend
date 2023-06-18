@@ -8,132 +8,404 @@ export const ImgCarouselContainer = styled.div`
   background-position: center;
   background-size: cover;
 `;
-export const ContainerTopPost = styled.main`
+export const MainContainerLastPosts = styled.main`
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0px;
+  gap: 64px;
+  margin: auto;
 `;
 
-export const ContainerImg = styled.div`
-  background-color: red;
-  height: 400px;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0px 32px;
+  gap: 32px;
 
-  background-image: url("${props => props.image}");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh;
+
+  @media (max-width: 1300px) {
+    width: 800px;
+    height: 100vh;
+  }
+
+  @media (max-width: 880px) {
+    width: 600px;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
 export const StyleParagraph = styled.p`
-  color: #333333;
-  font-family: "inter";
-  padding: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+
+  color: #1a1a1a;
 
   span {
     color: #74768f;
   }
 `;
-
-export const H1 = styled(Link)`
-  font-family: "inter";
-  font-size: 42px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #333333;
-  font-weight: bold;
-  transition: all 0.4s;
-
-  :hover {
-    opacity: 0.5;
-  }
-
-  @media (max-width: 400px) {
-    color: red;
-    font-size: 30px;
-  }
-`;
-
-export const MainContainerWrapper = styled.main`
-  width: 100%;
+export const Content = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 32px;
+  max-width: 1216px;
+  height: 100vh;
+  @media (max-width: 1300px) {
+    width: 800px;
+    flex-direction: column;
+  }
 
-  flex-wrap: wrap;
-  margin-top: 50px;
-  margin-bottom: 200px;
-`;
+  @media (max-width: 880px) {
+    width: 600px;
+  }
 
-export const TopPost = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-
-  hr {
-    width: 90%;
-    margin-top: 20px;
-    color: rgba(255, 255, 255, 0.1);
+  @media (max-width: 620px) {
+    width: 100%;
   }
 `;
 
-export const BottomTopPost = styled.div`
-  padding: 20px;
-  font-family: "roboto";
-
-  div {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  p {
-    margin-top: 15px;
-  }
-`;
-
-export const ALink = styled(Link)`
-  margin-top: 60px;
-  font-size: 18px;
-  color: #71c5a5;
-  font-weight: bold;
-  transition: all 0.4s;
-
-  :hover {
-    opacity: 0.5;
-  }
-`;
-
-export const ContainerPosts = styled(Link)`
+export const BlogPostCard = styled.div`
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  gap: 32px;
+  max-width: 592px;
 
-  margin-top: 20px;
-  height: 300px;
-  width: 350px;
-
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  @media (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
-export const ImgLastPosts = styled.div`
+export const ContainerImg = styled.div`
+  width: 592px;
+  height: 228px;
+
   background-image: url("${props => props.image}");
-  height: 100%;
-  width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
-export const StyledP = styled.p`
-  font-family: "inter";
-  text-align: center;
-  font-size: 20px;
-  padding: 10px;
+export const ContentBlogPost = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 
-  text-transform: uppercase;
-  color: #333333;
-  font-weight: bold;
-  transition: all 0.4s;
+  padding: 5px;
+  max-width: 592px;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+export const HeadAndTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 592px;
+  height: 124px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+export const DescriptionBlogText = styled.div`
+  max-width: 592px;
+  height: 48px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #667085;
+`;
+
+export const Text = styled.p`
+  max-width: 592px;
+  height: 20px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #6941c6;
+
+  span {
+    color: #333333;
+  }
+`;
+
+export const HeadAndIcon = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 592px;
+  height: 32px;
+  margin-bottom: 20px;
+`;
+
+export const StyledParagraphLink = styled(Link)`
+  max-width: 552px;
+  height: 32px;
+  text-decoration: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  transition: all 0.3s;
+  color: #1a1a1a;
 
   :hover {
-    opacity: 0.5;
+    opacity: 0.9;
+  }
+`;
+
+export const Category = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  max-width: 592px;
+  height: 24px;
+`;
+
+export const Badge = styled.div`
+  display: flex;
+  max-width: 100px;
+  height: 24px;
+
+  mix-blend-mode: multiply;
+`;
+
+export const BadgeBase = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+
+  max-width: 100px;
+  height: 24px;
+
+  background: #f9f5ff;
+  border-radius: 16px;
+
+  span {
+    max-width: 100px;
+    height: 20px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    text-align: center;
+
+    color: #6941c6;
+  }
+`;
+
+export const IconWrap = styled(Link)`
+  display: flex;
+  text-decoration: none;
+  color: black;
+  flex-direction: column;
+  padding: 4px 0px 4px;
+  max-width: 24px;
+  height: 28px;
+`;
+
+export const ColumnPosts = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px;
+  gap: 32px;
+
+  max-width: 592px;
+  height: 432px;
+
+  @media (max-width: 620px) {
+    width: 100%;
+    height: 500px;
+    margin-top: 200px;
+  }
+`;
+
+export const ColumnBlogPostCard = styled.div`
+  display: flex;
+  padding: 0px;
+  gap: 24px;
+
+  max-width: 592px;
+  height: 200px;
+
+  @media (max-width: 620px) {
+    width: 100%;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+`;
+
+export const ImgColumnBlogPostCard = styled.div`
+  width: 320px;
+  height: 200px;
+
+  background-image: url("${props => props.image}");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (max-width: 620px) {
+    width: 100%;
+  }
+`;
+
+export const ContentColumnBlogPostCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 248px;
+  height: 188px;
+
+  @media (max-width: 620px) {
+    gap: 0;
+    width: 100%;
+  }
+`;
+
+export const HeadingAndTextColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  max-width: 248px;
+  height: 140px;
+
+  p {
+    max-width: 248px;
+    height: 20px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: #6941c6;
+  }
+`;
+
+export const HeadAndTextDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 8px;
+
+  max-width: 248px;
+  height: 108px;
+
+  p {
+    max-width: 248px;
+    height: 28px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+
+    color: #1a1a1a;
+  }
+
+  span {
+    max-width: 248px;
+    height: 72px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: #667085;
+  }
+`;
+
+export const ColumnCategory = styled.div`
+  display: flex;
+  gap: 8px;
+  max-width: 248px;
+  height: 24px;
+`;
+
+export const ColumnBadge = styled.div`
+  display: flex;
+  max-width: 100px;
+  height: 24px;
+
+  mix-blend-mode: multiply;
+`;
+
+export const ColumnBadgeBase = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+
+  max-width: 100px;
+  height: 24px;
+
+  background: #f0f9ff;
+  border-radius: 16px;
+
+  span {
+    max-width: 100px;
+    height: 20px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    text-align: center;
+
+    color: #026aa2;
   }
 `;
