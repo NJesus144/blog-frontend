@@ -9,7 +9,6 @@ export const ImgCarouselContainer = styled.div`
   background-size: cover;
 `;
 export const MainContainerLastPosts = styled.main`
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +17,20 @@ export const MainContainerLastPosts = styled.main`
   margin: auto;
 
   padding-bottom: 100px;
+`;
+
+export const BoxCarousel = styled.div`
+  height: 600px;
+  width: 100%;
+  margin-top: 68px;
+  background-color: red;
+
+  color: blue;
+
+  p {
+    font-family: "Inter";
+    font-size: 42px;
+  }
 `;
 
 export const Container = styled.div`
@@ -443,4 +456,8 @@ export const SectionRowAndHeader = styled.section`
 
   max-width: 1440px;
   margin: auto;
+`;
+
+export const DivButton = styled.div`
+  margin-top: 30px;
 `;

@@ -42,7 +42,7 @@ export const Header = () => {
   return (
     <ContainerHeader color={"#fff"}>
       <Container>
-        <Logo to={`/`}>BlogV3</Logo>
+        <Logo to={`/`}>Home</Logo>
 
         <Nav>
           <NavLink to={`/post/allposts`} target="_blank">

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import WithImg from "../../assets/treino.jpg";
+import WithImg from "../../assets/mernstack.jpg";
 
 const StyledFlex = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ const StyledFlex = styled.div`
 `;
 const StyledImage = styled.div`
   background-image: url("${props => props.image}");
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -42,10 +42,10 @@ const StyledContainer = styled.div`
   }
 `;
 
-export const ImageWithSpace = ({ children }) => {
+export const ImageWithSpace = ({ children, image }) => {
   return (
     <StyledFlex>
-      <StyledImage image={WithImg} />
+      <StyledImage image={image ? image : WithImg} />
       <StyledContainer>{children}</StyledContainer>
     </StyledFlex>
   );

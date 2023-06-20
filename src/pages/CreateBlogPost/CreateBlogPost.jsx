@@ -2,8 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../components/inputs/Button";
 import { Input } from "../../components/inputs/Input";
+import { H2 } from "../../components/typography/H2";
 import { ContainerFom } from "../../layout/ContainerForm/Index";
+import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
 import { createPostWithinTheBlog } from "../../services/postsServices";
+
 export const Textarea = styled.textarea`
   resize: none;
 
@@ -22,7 +25,7 @@ export const Textarea = styled.textarea`
   transition: ease-in-out 0.3s;
 
   :focus {
-    border: 2px solid #4aa884;
+    border: 2px solid #9af0ff;
   }
 
   @media (max-width: 520px) {
@@ -67,20 +70,29 @@ export const CreateBlogPost = () => {
   };
 
   return (
-    <ContainerFom>
-      <Form onSubmit={handleForm}>
-        <Input placeholder="Título" onChange={e => setTitle(e.target.value)} />
-        <Input
-          placeholder="Descrição"
-          onChange={e => setDescription(e.target.value)}
-        />
-        <Input placeholder="Banner" onChange={e => setBanner(e.target.value)} />
-        <Textarea
-          placeholder="Escreva sua mensagem"
-          onChange={e => setText(e.target.value)}
-        />
-        <Button type="submit">POSTAR</Button>
-      </Form>
-    </ContainerFom>
+    <ImageWithSpace>
+      <ContainerFom>
+        <H2>Faça sua postagem</H2>
+        <Form onSubmit={handleForm}>
+          <Input
+            placeholder="Título"
+            onChange={e => setTitle(e.target.value)}
+          />
+          <Input
+            placeholder="Descrição"
+            onChange={e => setDescription(e.target.value)}
+          />
+          <Input
+            placeholder="Endereço da imagem"
+            onChange={e => setBanner(e.target.value)}
+          />
+          <Textarea
+            placeholder="Escreva sua mensagem"
+            onChange={e => setText(e.target.value)}
+          />
+          <Button type="submit">POSTAR</Button>
+        </Form>
+      </ContainerFom>
+    </ImageWithSpace>
   );
 };

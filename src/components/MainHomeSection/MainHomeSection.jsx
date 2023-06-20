@@ -1,4 +1,5 @@
 // import { Link } from "react-router-dom";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
@@ -6,6 +7,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
 import { getLastPosts } from "../../services/postsServices";
 import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
+import { Header } from "../Header/Header";
+import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
+import { Button } from "../inputs/Button";
 import {
   Badge,
   BadgeBase,
@@ -23,52 +27,73 @@ import {
   ContentBlogPost,
   ContentColumnBlogPostCard,
   DescriptionBlogText,
+  DivButton,
   HeadAndIcon,
   HeadAndTextBox,
   HeadAndTextDescription,
   HeadingAndTextColumn,
   IconWrap,
-  ImgCarouselContainer,
   ImgColumnBlogPostCard,
   MainContainerLastPosts,
+  SectionRowAndHeader,
   StyleParagraph,
   StyledParagraphLink,
   Text,
   TitleSection,
-  SectionRowAndHeader,
 } from "./style.js";
 
 const imgCarousel = [
   {
     id: 1,
-    img: "https://as2.ftcdn.net/v2/jpg/05/95/49/73/1000_F_595497335_LXmQUCnyuAiYErNn4y5MvTeyqShW8MlX.jpg",
+    img: "https://images7.alphacoders.com/122/1226930.jpg",
   },
   {
     id: 2,
-    img: "https://cdn.shopify.com/s/files/1/0544/4059/1547/articles/tudo-sobre-corrida-2_1100x.jpg?v=1642428838",
+    img: "https://images2.alphacoders.com/117/1178869.jpg",
   },
   {
     id: 3,
-    img: "https://news.gympass.com/wp-content/uploads/2017/07/shutterstock_516665767-1-1280x640.jpg",
+    img: "https://images.alphacoders.com/468/468462.jpg",
   },
 ];
 const limit = 2;
 const offset = 1;
 export const MainHomeSection = () => {
   const [lastPosts, setLastPosts] = useState([]);
+  const [paginationPost, setPaginationPosts] = useState([]);
+  const [limitMorePost, setLimitMorePost] = useState(12);
+
+  const [disabled, setDisabled] = useState(false);
 
   const { data } = useGetLastPost("/post/top");
 
   useEffect(() => {
+    paginationPosts();
     async function resLastPosts() {
       const response = await getLastPosts(limit, offset);
       setLastPosts(response.results);
     }
     resLastPosts();
   }, []);
-  console.log(data);
+
+  const paginationPosts = async (limit, offset) => {
+    const response = await getLastPosts(limit, offset);
+    setPaginationPosts(response);
+  };
+
+  const handlePagination = () => {
+    let offset = 0;
+    if (paginationPost.nextUrl) setLimitMorePost(oldValue => oldValue + 6);
+    if (paginationPost.results?.length === paginationPost.total)
+      setDisabled(true);
+
+    paginationPosts(limitMorePost, offset);
+  };
+
+  console.log("postagens", paginationPost);
   return (
     <>
+      <Header />
       <Carousel
         autoPlay={true}
         showStatus={false}
@@ -91,7 +116,7 @@ export const MainHomeSection = () => {
                 <HeadAndTextBox>
                   <Text>
                     <span>Por </span>
-                    {data?.username}
+                    {data?.username} • {moment(data?.createdAt).format("LLL")}
                   </Text>
                   <HeadAndIcon>
                     <StyledParagraphLink to={`/post/categoryId/${data?.id}`}>
@@ -141,17 +166,15 @@ export const MainHomeSection = () => {
       <SectionRowAndHeader>
         <TitleSection>Todos as postagens</TitleSection>
         <ContainerRowPosts>
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
-          <CardPostBlog />
+          {paginationPost.results?.map(item => (
+            <CardPostBlog key={item.id} postBlog={item} />
+          ))}
         </ContainerRowPosts>
+        <DivButton>
+          <Button disabled={disabled} onClick={handlePagination}>
+            Carregar mais posts
+          </Button>
+        </DivButton>
       </SectionRowAndHeader>
     </>
   );

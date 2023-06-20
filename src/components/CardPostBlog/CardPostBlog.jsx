@@ -1,3 +1,4 @@
+import moment from "moment";
 import { FiArrowUpRight } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -18,6 +19,10 @@ const Container = styled.div`
 
 const Image = styled.div`
   background-image: url("${props => props.image}");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   height: 240px;
   width: 384;
@@ -99,14 +104,16 @@ const CategoryBadge = styled.div`
   text-align: center;
 `;
 
-export const CardPostBlog = () => {
+export const CardPostBlog = ({ postBlog }) => {
   return (
     <Container>
-      <Image image={"https://images7.alphacoders.com/108/1087509.jpg"} />
+      <Image image={postBlog.banner} />
       <HeadAndText>
-        <StyledAuthor>Author</StyledAuthor>
+        <StyledAuthor>
+          {postBlog.name} • {moment(postBlog.createdAt).format("LLL")}
+        </StyledAuthor>
         <StyledTitleAndArrow>
-          <h4>Title</h4>
+          <h4>{postBlog.title}</h4>
           <FiArrowUpRight size={24} />
         </StyledTitleAndArrow>
         <StyledText>

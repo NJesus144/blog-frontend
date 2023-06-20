@@ -18,7 +18,7 @@ const InputField = styled.input`
   }
 
   :focus {
-    border: 2px solid #a626a6;
+    border: 2px solid #9af0ff;
   }
 `;
 

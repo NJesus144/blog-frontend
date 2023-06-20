@@ -10,7 +10,7 @@ export const ContainerHeader = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 100;
 `;
 
 export const StyledParagraph = styled.p`
