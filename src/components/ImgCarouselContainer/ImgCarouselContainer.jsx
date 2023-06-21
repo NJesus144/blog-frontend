@@ -18,7 +18,6 @@ export const BoxCarousel = styled.div`
   justify-content: center;
 
   :hover {
-    cursor: pointer;
     background-color: black;
     opacity: 0.4;
   }

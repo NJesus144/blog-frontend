@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const ImgCarouselContainer = styled.div`
-  background-image: url("${props => props.image}");
-  height: 600px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-`;
+// export const ImgCarouselContainer = styled.div`
+//   background-image: url("${props => props.image}");
+//   height: 600px;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+// `;
 export const MainContainerLastPosts = styled.main`
   display: flex;
   flex-direction: column;
@@ -19,19 +19,19 @@ export const MainContainerLastPosts = styled.main`
   padding-bottom: 100px;
 `;
 
-export const BoxCarousel = styled.div`
-  height: 600px;
-  width: 100%;
-  margin-top: 68px;
-  background-color: red;
+// export const BoxCarousel = styled.div`
+//   height: 600px;
+//   width: 100%;
+//   margin-top: 68px;
+//   background-color: red;
 
-  color: blue;
+//   color: blue;
 
-  p {
-    font-family: "Inter";
-    font-size: 42px;
-  }
-`;
+//   p {
+//     font-family: "Inter";
+//     font-size: 42px;
+//   }
+// `;
 
 export const Container = styled.div`
   display: flex;
@@ -98,7 +98,7 @@ export const BlogPostCard = styled.div`
   }
 `;
 
-export const ContainerImg = styled.div`
+export const ContainerImg = styled(Link)`
   width: 592px;
   height: 228px;
 
@@ -156,6 +156,8 @@ export const DescriptionBlogText = styled.div`
 export const Text = styled.p`
   max-width: 592px;
   height: 20px;
+  display: flex;
+  justify-content: space-between;
 
   font-family: "Inter";
   font-style: normal;
@@ -285,7 +287,7 @@ export const ColumnBlogPostCard = styled.div`
   }
 `;
 
-export const ImgColumnBlogPostCard = styled.div`
+export const ImgColumnBlogPostCard = styled(Link)`
   width: 320px;
   height: 200px;
 
@@ -344,23 +346,6 @@ export const HeadAndTextDescription = styled.div`
   max-width: 248px;
   height: 108px;
 
-  p {
-    max-width: 248px;
-    height: 28px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
-
-    color: #1a1a1a;
-  }
-
   span {
     max-width: 248px;
     height: 72px;
@@ -377,6 +362,25 @@ export const HeadAndTextDescription = styled.div`
 
     color: #667085;
   }
+`;
+
+export const ParagraphLink = styled(Link)`
+  max-width: 248px;
+  height: 28px;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #1a1a1a;
 `;
 
 export const ColumnCategory = styled.div`

@@ -5,8 +5,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
-import { getLastPosts } from "../../services/postsServices";
+import { api } from "../../services/api/api";
+import { deletePost, getLastPosts } from "../../services/postsServices";
 import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
+import { NotFountPost } from "../ErrorMessage/NotFoundPosts";
 import { Header } from "../Header/Header";
 import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
 import { Button } from "../inputs/Button";
@@ -35,13 +37,13 @@ import {
   IconWrap,
   ImgColumnBlogPostCard,
   MainContainerLastPosts,
+  ParagraphLink,
   SectionRowAndHeader,
   StyleParagraph,
   StyledParagraphLink,
   Text,
   TitleSection,
-} from "./style.js";
-
+} from "./style";
 const imgCarousel = [
   {
     id: 1,
@@ -90,7 +92,18 @@ export const MainHomeSection = () => {
     paginationPosts(limitMorePost, offset);
   };
 
-  console.log("postagens", paginationPost);
+  const handleDelete = async id => {
+    const token = localStorage.getItem("@Auth:token");
+    try {
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+
+      const res = await deletePost(id);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -105,77 +118,100 @@ export const MainHomeSection = () => {
           <ImgCarouselContainer key={imgs.id} image={imgs.img} />
         ))}
       </Carousel>
-
-      <MainContainerLastPosts>
-        <Container>
-          <StyleParagraph>Postagens recentes</StyleParagraph>
-          <Content>
-            <BlogPostCard>
-              <ContainerImg image={data?.banner} />
-              <ContentBlogPost>
-                <HeadAndTextBox>
-                  <Text>
-                    <span>Por </span>
-                    {data?.username} • {moment(data?.createdAt).format("LLL")}
-                  </Text>
-                  <HeadAndIcon>
-                    <StyledParagraphLink to={`/post/categoryId/${data?.id}`}>
-                      {data?.title}
-                    </StyledParagraphLink>
-                    <IconWrap to={`/post/categoryId/${data?.id}`}>
-                      <FiArrowUpRight size={24} />
-                    </IconWrap>
-                  </HeadAndIcon>
-                  <DescriptionBlogText>{data?.description}</DescriptionBlogText>
-                </HeadAndTextBox>
-                <Category>
-                  <Badge>
-                    <BadgeBase>
-                      <span>Tecnologia</span>
-                    </BadgeBase>
-                  </Badge>
-                </Category>
-              </ContentBlogPost>
-            </BlogPostCard>
-            <ColumnPosts>
-              {lastPosts.map(item => (
-                <ColumnBlogPostCard key={item.id}>
-                  <ImgColumnBlogPostCard image={item.banner} />
-                  <ContentColumnBlogPostCard>
-                    <HeadingAndTextColumn>
-                      <p>{item.username}</p>
-                      <HeadAndTextDescription>
-                        <p>{item.title}</p>
-                        <span>{item.description}</span>
-                      </HeadAndTextDescription>
-                    </HeadingAndTextColumn>
-                    <ColumnCategory>
-                      <ColumnBadge>
-                        <ColumnBadgeBase>
-                          <span>tecnologia</span>
-                        </ColumnBadgeBase>
-                      </ColumnBadge>
-                    </ColumnCategory>
-                  </ContentColumnBlogPostCard>
-                </ColumnBlogPostCard>
+      {paginationPost.results?.length > 0 ? (
+        <>
+          <MainContainerLastPosts>
+            <Container>
+              <StyleParagraph>Postagens recentes</StyleParagraph>
+              <Content>
+                <BlogPostCard>
+                  <ContainerImg
+                    image={data?.banner}
+                    to={`/post/categoryId/${data?.id}`}
+                  />
+                  <ContentBlogPost>
+                    <HeadAndTextBox>
+                      <Text>
+                        <div>
+                          <span>Por </span>
+                          {data?.username} •{" "}
+                          {moment(data?.createdAt).format("LLL")}
+                        </div>
+                        <button onClick={() => handleDelete(data?.id)}>
+                          deletar
+                        </button>
+                      </Text>
+                      <HeadAndIcon>
+                        <StyledParagraphLink
+                          to={`/post/categoryId/${data?.id}`}
+                        >
+                          {data?.title}
+                        </StyledParagraphLink>
+                        <IconWrap to={`/post/categoryId/${data?.id}`}>
+                          <FiArrowUpRight size={24} />
+                        </IconWrap>
+                      </HeadAndIcon>
+                      <DescriptionBlogText>
+                        {data?.description}
+                      </DescriptionBlogText>
+                    </HeadAndTextBox>
+                    <Category>
+                      <Badge>
+                        <BadgeBase>
+                          <span>Tecnologia</span>
+                        </BadgeBase>
+                      </Badge>
+                    </Category>
+                  </ContentBlogPost>
+                </BlogPostCard>
+                <ColumnPosts>
+                  {lastPosts.map(item => (
+                    <ColumnBlogPostCard key={item.id}>
+                      <ImgColumnBlogPostCard
+                        to={`/post/categoryId/${data?.id}`}
+                        image={item.banner}
+                      />
+                      <ContentColumnBlogPostCard>
+                        <HeadingAndTextColumn>
+                          <p>{item.username}</p>
+                          <HeadAndTextDescription>
+                            <ParagraphLink to={`/post/categoryId/${data?.id}`}>
+                              {item.title}
+                            </ParagraphLink>
+                            <span>{item.description}</span>
+                          </HeadAndTextDescription>
+                        </HeadingAndTextColumn>
+                        <ColumnCategory>
+                          <ColumnBadge>
+                            <ColumnBadgeBase>
+                              <span>tecnologia</span>
+                            </ColumnBadgeBase>
+                          </ColumnBadge>
+                        </ColumnCategory>
+                      </ContentColumnBlogPostCard>
+                    </ColumnBlogPostCard>
+                  ))}
+                </ColumnPosts>
+              </Content>
+            </Container>
+          </MainContainerLastPosts>
+          <SectionRowAndHeader>
+            <TitleSection>Todos as postagens</TitleSection>
+            <ContainerRowPosts>
+              {paginationPost.results?.map(item => (
+                <CardPostBlog key={item.id} postBlog={item} />
               ))}
-            </ColumnPosts>
-          </Content>
-        </Container>
-      </MainContainerLastPosts>
-      <SectionRowAndHeader>
-        <TitleSection>Todos as postagens</TitleSection>
-        <ContainerRowPosts>
-          {paginationPost.results?.map(item => (
-            <CardPostBlog key={item.id} postBlog={item} />
-          ))}
-        </ContainerRowPosts>
-        <DivButton>
-          <Button disabled={disabled} onClick={handlePagination}>
-            Carregar mais posts
-          </Button>
-        </DivButton>
-      </SectionRowAndHeader>
+            </ContainerRowPosts>
+            <DivButton>
+              <Button disabled={disabled} onClick={handlePagination}>
+                Carregar mais posts
+              </Button>
+            </DivButton>
+          </SectionRowAndHeader>
+        </>
+      ) : (
+        <NotFountPost />
+      )}
     </>
   );
 };

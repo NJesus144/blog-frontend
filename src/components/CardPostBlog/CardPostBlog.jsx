@@ -1,5 +1,6 @@
 import moment from "moment";
 import { FiArrowUpRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -17,7 +18,7 @@ const Container = styled.div`
   }
 `;
 
-const Image = styled.div`
+const Image = styled(Link)`
   background-image: url("${props => props.image}");
 
   background-position: center;
@@ -53,19 +54,19 @@ const StyledTitleAndArrow = styled.div`
   align-items: center;
 
   padding: 10px 0px;
+`;
 
-  h4 {
-    text-decoration: none;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    transition: all 0.3s;
-    color: #1a1a1a;
+const H4 = styled(Link)`
+  text-decoration: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  transition: all 0.3s;
+  color: #1a1a1a;
 
-    :hover {
-      opacity: 0.9;
-    }
+  :hover {
+    opacity: 0.9;
   }
 `;
 
@@ -104,17 +105,23 @@ const CategoryBadge = styled.div`
   text-align: center;
 `;
 
+const BoxIcon = styled(Link)`
+  color: #1a1a1a;
+`;
+
 export const CardPostBlog = ({ postBlog }) => {
   return (
     <Container>
-      <Image image={postBlog.banner} />
+      <Image to={`/post/categoryId/${postBlog.id}`} image={postBlog.banner} />
       <HeadAndText>
         <StyledAuthor>
           {postBlog.name} • {moment(postBlog.createdAt).format("LLL")}
         </StyledAuthor>
         <StyledTitleAndArrow>
-          <h4>{postBlog.title}</h4>
-          <FiArrowUpRight size={24} />
+          <H4 to={`/post/categoryId/${postBlog.id}`}>{postBlog.title}</H4>
+          <BoxIcon to={`/post/categoryId/${postBlog.id}`}>
+            <FiArrowUpRight size={24} />
+          </BoxIcon>
         </StyledTitleAndArrow>
         <StyledText>
           Lorem Ipsum is simply dummy text of the printing and typesetting

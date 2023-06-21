@@ -11,6 +11,11 @@ export function getPostById(id, configToken) {
   return response;
 }
 
+export async function deletePost(id, configToken) {
+  const response = await api.delete(`/post/${id}`, configToken);
+  return response;
+}
+
 export function getUpdatedPost(url, token) {
   const response = api.get(url, token);
   return response;
