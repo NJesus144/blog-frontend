@@ -5,9 +5,9 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
-import { api } from "../../services/api/api";
-import { deletePost, getLastPosts } from "../../services/postsServices";
+import { getLastPosts } from "../../services/postsServices";
 import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
+import { DeleteMenu } from "../DeleteMenu/DeleteMenu";
 import { NotFountPost } from "../ErrorMessage/NotFoundPosts";
 import { Header } from "../Header/Header";
 import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
@@ -91,18 +91,17 @@ export const MainHomeSection = () => {
 
     paginationPosts(limitMorePost, offset);
   };
+  // const handleDelete = async id => {
+  //   const token = localStorage.getItem("@Auth:token");
+  //   try {
+  //     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-  const handleDelete = async id => {
-    const token = localStorage.getItem("@Auth:token");
-    try {
-      api.defaults.headers.Authorization = `Bearer ${token}`;
-
-      const res = await deletePost(id);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     const res = await deletePost(id);
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <>
@@ -137,9 +136,9 @@ export const MainHomeSection = () => {
                           {data?.username} •{" "}
                           {moment(data?.createdAt).format("LLL")}
                         </div>
-                        <button onClick={() => handleDelete(data?.id)}>
+                        {/* <button onClick={() => handleDelete(data?.id)}>
                           deletar
-                        </button>
+                        </button> */}
                       </Text>
                       <HeadAndIcon>
                         <StyledParagraphLink
@@ -160,6 +159,7 @@ export const MainHomeSection = () => {
                         <BadgeBase>
                           <span>Tecnologia</span>
                         </BadgeBase>
+                        <DeleteMenu />
                       </Badge>
                     </Category>
                   </ContentBlogPost>

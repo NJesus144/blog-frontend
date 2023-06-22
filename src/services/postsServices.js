@@ -42,6 +42,8 @@ export async function createPostCommentBlog(id, text) {
   return response;
 }
 
+const newToken = localStorage.getItem("@Auth:token");
+console.log("token antes da criacao", newToken);
 export async function createPostWithinTheBlog(
   title,
   description,
@@ -56,7 +58,7 @@ export async function createPostWithinTheBlog(
       text,
       banner,
     },
-    configToken
+    newToken
   );
   return response.data;
 }

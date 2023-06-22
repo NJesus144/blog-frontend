@@ -209,15 +209,15 @@ export const Category = styled.div`
 
 export const Badge = styled.div`
   display: flex;
-  max-width: 100px;
+  width: 100%;
   height: 24px;
-
+  justify-content: space-between;
   mix-blend-mode: multiply;
 `;
 
 export const BadgeBase = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space;
   align-items: center;
   padding: 2px 10px;
 
