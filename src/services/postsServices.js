@@ -43,6 +43,7 @@ export async function createPostCommentBlog(id, text) {
 }
 
 const newToken = localStorage.getItem("@Auth:token");
+console.log(newToken);
 export async function createPostWithinTheBlog(
   title,
   description,

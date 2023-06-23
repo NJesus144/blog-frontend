@@ -1,47 +1,24 @@
 // import { Link } from "react-router-dom";
-import moment from "moment";
 import { useEffect, useState } from "react";
-import { FiArrowUpRight } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
 import { getLastPosts } from "../../services/postsServices";
 import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
-import { DeleteMenu } from "../DeleteMenu/DeleteMenu";
+import { ColumnPosts } from "../ColumnPosts/ColumnPosts";
 import { NotFountPost } from "../ErrorMessage/NotFoundPosts";
 import { Header } from "../Header/Header";
 import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
+import { TopPost } from "../TopPost/TopPost";
 import { Button } from "../inputs/Button";
 import {
-  Badge,
-  BadgeBase,
-  BlogPostCard,
-  Category,
-  ColumnBadge,
-  ColumnBadgeBase,
-  ColumnBlogPostCard,
-  ColumnCategory,
-  ColumnPosts,
   Container,
-  ContainerImg,
   ContainerRowPosts,
   Content,
-  ContentBlogPost,
-  ContentColumnBlogPostCard,
-  DescriptionBlogText,
   DivButton,
-  HeadAndIcon,
-  HeadAndTextBox,
-  HeadAndTextDescription,
-  HeadingAndTextColumn,
-  IconWrap,
-  ImgColumnBlogPostCard,
   MainContainerLastPosts,
-  ParagraphLink,
   SectionRowAndHeader,
   StyleParagraph,
-  StyledParagraphLink,
-  Text,
   TitleSection,
 } from "./style";
 const imgCarousel = [
@@ -58,10 +35,8 @@ const imgCarousel = [
     img: "https://images.alphacoders.com/468/468462.jpg",
   },
 ];
-const limit = 2;
-const offset = 1;
+
 export const MainHomeSection = () => {
-  const [lastPosts, setLastPosts] = useState([]);
   const [paginationPost, setPaginationPosts] = useState([]);
   const [limitMorePost, setLimitMorePost] = useState(12);
 
@@ -71,11 +46,6 @@ export const MainHomeSection = () => {
 
   useEffect(() => {
     paginationPosts();
-    async function resLastPosts() {
-      const response = await getLastPosts(limit, offset);
-      setLastPosts(response.results);
-    }
-    resLastPosts();
   }, []);
 
   const paginationPosts = async (limit, offset) => {
@@ -91,17 +61,6 @@ export const MainHomeSection = () => {
 
     paginationPosts(limitMorePost, offset);
   };
-  // const handleDelete = async id => {
-  //   const token = localStorage.getItem("@Auth:token");
-  //   try {
-  //     api.defaults.headers.Authorization = `Bearer ${token}`;
-
-  //     const res = await deletePost(id);
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <>
@@ -123,75 +82,9 @@ export const MainHomeSection = () => {
             <Container>
               <StyleParagraph>Postagens recentes</StyleParagraph>
               <Content>
-                <BlogPostCard>
-                  <ContainerImg
-                    image={data?.banner}
-                    to={`/post/categoryId/${data?.id}`}
-                  />
-                  <ContentBlogPost>
-                    <HeadAndTextBox>
-                      <Text>
-                        <div>
-                          <span>Por </span>
-                          {data?.username} •{" "}
-                          {moment(data?.createdAt).format("LLL")}
-                        </div>
-                        {/* <button onClick={() => handleDelete(data?.id)}>
-                          deletar
-                        </button> */}
-                      </Text>
-                      <HeadAndIcon>
-                        <StyledParagraphLink
-                          to={`/post/categoryId/${data?.id}`}
-                        >
-                          {data?.title}
-                        </StyledParagraphLink>
-                        <IconWrap to={`/post/categoryId/${data?.id}`}>
-                          <FiArrowUpRight size={24} />
-                        </IconWrap>
-                      </HeadAndIcon>
-                      <DescriptionBlogText>
-                        {data?.description}
-                      </DescriptionBlogText>
-                    </HeadAndTextBox>
-                    <Category>
-                      <Badge>
-                        <BadgeBase>
-                          <span>Tecnologia</span>
-                        </BadgeBase>
-                        <DeleteMenu />
-                      </Badge>
-                    </Category>
-                  </ContentBlogPost>
-                </BlogPostCard>
-                <ColumnPosts>
-                  {lastPosts.map(item => (
-                    <ColumnBlogPostCard key={item.id}>
-                      <ImgColumnBlogPostCard
-                        to={`/post/categoryId/${data?.id}`}
-                        image={item.banner}
-                      />
-                      <ContentColumnBlogPostCard>
-                        <HeadingAndTextColumn>
-                          <p>{item.username}</p>
-                          <HeadAndTextDescription>
-                            <ParagraphLink to={`/post/categoryId/${data?.id}`}>
-                              {item.title}
-                            </ParagraphLink>
-                            <span>{item.description}</span>
-                          </HeadAndTextDescription>
-                        </HeadingAndTextColumn>
-                        <ColumnCategory>
-                          <ColumnBadge>
-                            <ColumnBadgeBase>
-                              <span>tecnologia</span>
-                            </ColumnBadgeBase>
-                          </ColumnBadge>
-                        </ColumnCategory>
-                      </ContentColumnBlogPostCard>
-                    </ColumnBlogPostCard>
-                  ))}
-                </ColumnPosts>
+                <TopPost data={data} />
+
+                <ColumnPosts />
               </Content>
             </Container>
           </MainContainerLastPosts>

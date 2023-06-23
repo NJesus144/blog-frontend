@@ -2,19 +2,21 @@ import moment from "moment";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { DeleteMenu } from "../DeleteMenu/DeleteMenu";
 
 const Container = styled.div`
   width: 384px;
   margin-right: 30px;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 
   @media (max-width: 498px) {
     margin: 0;
   }
 
   @media (max-width: 425px) {
-    width: 100%;
+    width: 300px;
   }
 `;
 
@@ -27,6 +29,10 @@ const Image = styled(Link)`
 
   height: 240px;
   width: 384;
+
+  @media (max-width: 425px) {
+    margin-top: 30px;
+  }
 `;
 
 const HeadAndText = styled.div`
@@ -83,7 +89,15 @@ const StyledText = styled.p`
   text-overflow: ellipsis;
 `;
 
-const Category = styled.div``;
+const Category = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 const CategoryBadge = styled.div`
   padding: 8px;
@@ -108,6 +122,8 @@ const CategoryBadge = styled.div`
 const BoxIcon = styled(Link)`
   color: #1a1a1a;
 `;
+const loggedInUser = localStorage.getItem("@Auth:user");
+const userObj = JSON.parse(loggedInUser);
 
 export const CardPostBlog = ({ postBlog }) => {
   return (
@@ -131,6 +147,7 @@ export const CardPostBlog = ({ postBlog }) => {
       </HeadAndText>
       <Category>
         <CategoryBadge>Tecnologia</CategoryBadge>
+        {postBlog.idUser === userObj._id && <DeleteMenu idPost={postBlog.id} />}
       </Category>
     </Container>
   );
