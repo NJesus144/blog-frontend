@@ -1,7 +1,9 @@
 import moment from "moment";
+import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useFetchAllPosts } from "../../hooks/useFetchAllPosts";
 import { DeleteMenu } from "../DeleteMenu/DeleteMenu";
 
 const Container = styled.div`
@@ -125,7 +127,14 @@ const BoxIcon = styled(Link)`
 const loggedInUser = localStorage.getItem("@Auth:user");
 const userObj = JSON.parse(loggedInUser);
 
-export const CardPostBlog = ({ postBlog }) => {
+export const CardPostBlog = ({ postBlog, itemsPerPage }) => {
+  const [isMutate, setIsMutate] = useState(false);
+  const { mutate } = useFetchAllPosts(`/post?limit=${itemsPerPage}&offset=0`);
+  if (isMutate) {
+    mutate();
+    setIsMutate(false);
+  }
+
   return (
     <Container>
       <Image to={`/post/categoryId/${postBlog.id}`} image={postBlog.banner} />
@@ -147,7 +156,9 @@ export const CardPostBlog = ({ postBlog }) => {
       </HeadAndText>
       <Category>
         <CategoryBadge>Tecnologia</CategoryBadge>
-        {postBlog.idUser === userObj._id && <DeleteMenu idPost={postBlog.id} />}
+        {postBlog.idUser === userObj._id && (
+          <DeleteMenu idPost={postBlog.id} setMutate={setIsMutate} />
+        )}
       </Category>
     </Container>
   );

@@ -29,8 +29,8 @@ export const ColumnPosts = () => {
     mutate();
     setIsMutate(false);
   }
-  console.log("prestposta do data", data?.results);
-  console.log(isMutate);
+  // console.log("prestposta do data", data?.results);
+  // console.log(isMutate);
 
   // useEffect(() => {
   //   async function resLastPosts() {

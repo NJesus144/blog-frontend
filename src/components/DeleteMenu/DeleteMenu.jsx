@@ -61,7 +61,6 @@ export const DeleteMenu = ({ idPost, setMutate }) => {
   const handleDelete = async idPost => {
     const token = localStorage.getItem("@Auth:token");
 
-    console.log("chegou aqui");
     try {
       api.defaults.headers.Authorization = `Bearer ${token}`;
 

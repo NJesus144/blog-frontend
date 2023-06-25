@@ -1,25 +1,20 @@
 // import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
-import { getLastPosts } from "../../services/postsServices";
-import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
+import { AllPosts } from "../AllPosts/AllPosts";
 import { ColumnPosts } from "../ColumnPosts/ColumnPosts";
 import { Header } from "../Header/Header";
 import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
 import { NotFountPost } from "../NotFoundPosts/NotFoundPosts";
 import { TopPost } from "../TopPost/TopPost";
-import { Button } from "../inputs/Button";
+
 import {
   Container,
-  ContainerRowPosts,
   Content,
-  DivButton,
   MainContainerLastPosts,
-  SectionRowAndHeader,
   StyleParagraph,
-  TitleSection,
 } from "./style";
 const imgCarousel = [
   {
@@ -37,11 +32,10 @@ const imgCarousel = [
 ];
 
 export const MainHomeSection = () => {
-  const [paginationPost, setPaginationPosts] = useState([]);
-  const [limitMorePost, setLimitMorePost] = useState(12);
+  // const [paginationPost, setPaginationPosts] = useState([]);
+  // const [limitMorePost, setLimitMorePost] = useState(12);
   const [isMutate, setIsMutate] = useState(false);
-
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
 
   const { data, mutate } = useGetLastPost("/post/top");
   if (isMutate) {
@@ -49,25 +43,26 @@ export const MainHomeSection = () => {
     setIsMutate(false);
   }
 
-  useEffect(() => {
-    paginationPosts();
-  }, []);
+  // useEffect(() => {
+  //   paginationPosts();
+  // }, []);
 
-  const paginationPosts = async (limit, offset) => {
-    const response = await getLastPosts(
-      `/post?limit=${limit}&offset=${offset}`
-    );
-    setPaginationPosts(response);
-  };
+  // console.log("resultado pagination", paginationPost, paginationPost.results);
+  // const paginationPosts = async (limit, offset) => {
+  //   const response = await getLastPosts(
+  //     `/post?limit=${limit}&offset=${offset}`
+  //   );
+  //   setPaginationPosts(response);
+  // };
 
-  const handlePagination = () => {
-    let offset = 0;
-    if (paginationPost.nextUrl) setLimitMorePost(oldValue => oldValue + 6);
-    if (paginationPost.results?.length === paginationPost.total)
-      setDisabled(true);
+  // const handlePagination = () => {
+  //   let offset = 0;
+  //   if (paginationPost.nextUrl) setLimitMorePost(oldValue => oldValue + 6);
+  //   if (paginationPost.results?.length === paginationPost.total)
+  //     setDisabled(true);
 
-    paginationPosts(limitMorePost, offset);
-  };
+  //   paginationPosts(limitMorePost, offset);
+  // };
 
   return (
     <>
@@ -83,7 +78,7 @@ export const MainHomeSection = () => {
           <ImgCarouselContainer key={imgs.id} image={imgs.img} />
         ))}
       </Carousel>
-      {paginationPost.results?.length > 0 ? (
+      {data ? (
         <>
           <MainContainerLastPosts>
             <Container>
@@ -95,7 +90,8 @@ export const MainHomeSection = () => {
               </Content>
             </Container>
           </MainContainerLastPosts>
-          <SectionRowAndHeader>
+          <AllPosts />
+          {/* <SectionRowAndHeader>
             <TitleSection>Todos as postagens</TitleSection>
             <ContainerRowPosts>
               {paginationPost.results?.map(item => (
@@ -107,7 +103,7 @@ export const MainHomeSection = () => {
                 Carregar mais posts
               </Button>
             </DivButton>
-          </SectionRowAndHeader>
+          </SectionRowAndHeader> */}
         </>
       ) : (
         <NotFountPost />
