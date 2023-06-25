@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../components/inputs/Button";
 import { Input } from "../../components/inputs/Input";
@@ -43,6 +44,7 @@ const Form = styled.form`
 `;
 
 export const CreateBlogPost = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [text, setText] = useState("");
@@ -65,7 +67,9 @@ export const CreateBlogPost = () => {
       );
       console.log(res);
     } catch (err) {
-      console.log(err.message);
+      if (err.response.data === "Unauthorized") {
+        return navigate("/login");
+      }
     }
   };
 

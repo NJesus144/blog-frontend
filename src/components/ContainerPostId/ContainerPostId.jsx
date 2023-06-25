@@ -12,7 +12,6 @@ import {
 } from "./style";
 
 export const ContainerPostId = ({ post }) => {
-  console.log(post);
   return (
     <ContainerMainSection>
       <Container>

@@ -35,8 +35,9 @@ const StyleContainerMenu = styled.div`
   position: relative;
 `;
 
-export const DeleteMenu = ({ idPost }) => {
+export const DeleteMenu = ({ idPost, setMutate }) => {
   const [show, setShow] = useState(false);
+
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -59,12 +60,15 @@ export const DeleteMenu = ({ idPost }) => {
 
   const handleDelete = async idPost => {
     const token = localStorage.getItem("@Auth:token");
+
     console.log("chegou aqui");
     try {
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
       const res = await deletePost(idPost);
-      console.log(res);
+      if (res.status === 200) {
+        setMutate(true);
+      }
     } catch (err) {
       console.log(err.message);
     }

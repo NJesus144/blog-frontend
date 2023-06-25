@@ -6,9 +6,9 @@ import { useGetLastPost } from "../../hooks/getLastPost";
 import { getLastPosts } from "../../services/postsServices";
 import { CardPostBlog } from "../CardPostBlog/CardPostBlog";
 import { ColumnPosts } from "../ColumnPosts/ColumnPosts";
-import { NotFountPost } from "../ErrorMessage/NotFoundPosts";
 import { Header } from "../Header/Header";
 import { ImgCarouselContainer } from "../ImgCarouselContainer/ImgCarouselContainer";
+import { NotFountPost } from "../NotFoundPosts/NotFoundPosts";
 import { TopPost } from "../TopPost/TopPost";
 import { Button } from "../inputs/Button";
 import {
@@ -39,17 +39,24 @@ const imgCarousel = [
 export const MainHomeSection = () => {
   const [paginationPost, setPaginationPosts] = useState([]);
   const [limitMorePost, setLimitMorePost] = useState(12);
+  const [isMutate, setIsMutate] = useState(false);
 
   const [disabled, setDisabled] = useState(false);
 
-  const { data } = useGetLastPost("/post/top");
+  const { data, mutate } = useGetLastPost("/post/top");
+  if (isMutate) {
+    mutate("/post/top");
+    setIsMutate(false);
+  }
 
   useEffect(() => {
     paginationPosts();
   }, []);
 
   const paginationPosts = async (limit, offset) => {
-    const response = await getLastPosts(limit, offset);
+    const response = await getLastPosts(
+      `/post?limit=${limit}&offset=${offset}`
+    );
     setPaginationPosts(response);
   };
 
@@ -82,7 +89,7 @@ export const MainHomeSection = () => {
             <Container>
               <StyleParagraph>Postagens recentes</StyleParagraph>
               <Content>
-                <TopPost data={data} />
+                <TopPost data={data} setIsMutate={setIsMutate} />
 
                 <ColumnPosts />
               </Content>

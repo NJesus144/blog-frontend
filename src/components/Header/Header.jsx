@@ -25,7 +25,9 @@ export const Header = () => {
     validToken();
   }, []);
 
-  if (!user) return navigate("login");
+  useEffect(() => {
+    if (!user) return navigate("login");
+  }, [user]);
 
   const removeUser = () => {
     localStorage.removeItem("@Auth:user");

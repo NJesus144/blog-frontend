@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
 
+import { ErrorField } from "../../components/ErrorMessage/ErrorField";
 import { Button } from "../../components/inputs/Button";
 import { Form } from "../../components/inputs/Form";
 import { Input } from "../../components/inputs/Input";
@@ -14,22 +15,31 @@ export const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fieldError, setFieldError] = useState(false);
+  const [notUser, setNotUser] = useState(false);
 
   const { signIn } = useContext(AuthContext);
 
   const handleForm = async e => {
     e.preventDefault();
 
-    if (!password || !email)
-      return alert("Campo email e senha precisam ser preenchidos");
+    if (!password || !email) {
+      setFieldError(true);
+      setTimeout(() => {
+        setFieldError(false);
+      }, 3000);
+      return;
+    }
 
     const user = await signIn(email, password);
 
     if (!user) {
-      alert("A sua conta ou senha está incorreta!");
+      setNotUser(true);
+      setTimeout(() => {
+        setNotUser(false);
+      }, 3000);
+      return;
     } else {
-      alert(`Bem vindo ${user.username}!`);
-
       navigate("/");
     }
   };
@@ -37,6 +47,14 @@ export const Login = () => {
   return (
     <ImageWithSpace>
       <ContainerFom>
+        <div>
+          {fieldError && (
+            <ErrorField>
+              Campo email e senha precisam ser preenchidos!
+            </ErrorField>
+          )}
+          {notUser && <ErrorField>Usuário e/ou senha inválidos!</ErrorField>}
+        </div>
         <H2>Entre com a sua conta.</H2>
         <Form onSubmit={handleForm}>
           <Input

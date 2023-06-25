@@ -2,6 +2,7 @@ import moment from "moment";
 import { FiArrowUpRight } from "react-icons/fi";
 import { DeleteMenu } from "../DeleteMenu/DeleteMenu";
 
+import { useEffect } from "react";
 import {
   Badge,
   BadgeBase,
@@ -18,10 +19,12 @@ import {
   Text,
 } from "./style";
 
-const loggedInUser = localStorage.getItem("@Auth:user");
-const userObj = JSON.parse(loggedInUser);
-
-export const TopPost = ({ data }) => {
+export const TopPost = ({ data, setIsMutate }) => {
+  const loggedInUser = localStorage.getItem("@Auth:user");
+  const userObj = JSON.parse(loggedInUser);
+  useEffect(() => {
+    if (userObj._id === data?.idUser) return;
+  }, [userObj._id, data?.idUser]);
   return (
     <BlogPostCard>
       <ContainerImg image={data?.banner} to={`/post/categoryId/${data?.id}`} />
@@ -48,7 +51,9 @@ export const TopPost = ({ data }) => {
             <BadgeBase>
               <span>Tecnologia</span>
             </BadgeBase>
-            {userObj._id === data?.idUser && <DeleteMenu idPost={data?.id} />}
+            {userObj._id === data?.idUser && (
+              <DeleteMenu idPost={data?.id} setMutate={setIsMutate} />
+            )}
           </Badge>
         </Category>
       </ContentBlogPost>

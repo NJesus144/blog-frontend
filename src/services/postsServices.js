@@ -26,8 +26,9 @@ export async function getTopPost() {
   return response.data.news;
 }
 
-export async function getLastPosts(limit, offset) {
-  const response = await api.get(`/post?limit=${limit}&offset=${offset}`);
+export async function getLastPosts(url) {
+  const response = await api.get(url);
+
   return response.data;
 }
 
@@ -43,7 +44,6 @@ export async function createPostCommentBlog(id, text) {
 }
 
 const newToken = localStorage.getItem("@Auth:token");
-console.log(newToken);
 export async function createPostWithinTheBlog(
   title,
   description,

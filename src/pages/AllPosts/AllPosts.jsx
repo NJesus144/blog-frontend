@@ -33,7 +33,7 @@ export const AllPosts = () => {
 
     paginationPosts(limit, offset);
   };
-  console.log(paginationPost.results);
+
   return (
     <>
       <Header />

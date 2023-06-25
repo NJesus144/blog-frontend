@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ErrorField } from "../../components/ErrorMessage/ErrorField";
 import { Button } from "../../components/inputs/Button";
 import { Form } from "../../components/inputs/Form";
 import { Input } from "../../components/inputs/Input";
@@ -15,12 +16,17 @@ export const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fieldError, setFieldError] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       if (!name || !username || !email || !password) {
-        return alert("Todos os campos precisam ser preenchidos!");
+        setFieldError(true);
+        setTimeout(() => {
+          setFieldError(false);
+        }, 3000);
+        return;
       }
 
       const response = await createUser(name, username, email, password);
@@ -35,6 +41,11 @@ export const Register = () => {
   return (
     <ImageWithSpace>
       <ContainerFom>
+        <div>
+          {fieldError && (
+            <ErrorField>Todos os campos precisam ser preenchidos!</ErrorField>
+          )}
+        </div>
         <H2>Crie sua conta.</H2>
         <Form onSubmit={handleSubmit}>
           <Input
