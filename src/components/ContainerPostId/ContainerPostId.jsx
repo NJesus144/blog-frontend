@@ -5,7 +5,6 @@ import {
   Container,
   Description,
   DivDescription,
-  H2,
   MainTitle,
   StyledImage,
   StyleParagraph,
@@ -26,12 +25,13 @@ export const ContainerPostId = ({ post }) => {
           <Description>{post.text}</Description>
         </DivDescription>
       </Container>
-      <H2>Deixe um comentário</H2>
+
       <CreatePostComment post={post} />
       {post.comments.map(commentBlog => (
         <CommentSection
           key={commentBlog.idComment}
           post={post}
+          userId={commentBlog.userId}
           idComment={commentBlog.idComment}
           text={commentBlog.comment}
         />

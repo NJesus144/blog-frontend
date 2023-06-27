@@ -25,9 +25,7 @@ export const Header = () => {
     validToken();
   }, []);
 
-  useEffect(() => {
-    if (!user) return navigate("login");
-  }, [user]);
+  if (!user || null) return navigate("login");
 
   const removeUser = () => {
     localStorage.removeItem("@Auth:user");
@@ -47,10 +45,6 @@ export const Header = () => {
         <Logo to={`/`}>Home</Logo>
 
         <Nav>
-          <NavLink to={`/post/allposts`} target="_blank">
-            Mais Postagens
-          </NavLink>
-
           {isValidUser && user !== null ? (
             <>
               <StyledParagraph>{`Olá, @${user.username}!`}</StyledParagraph>

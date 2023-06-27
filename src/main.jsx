@@ -9,7 +9,6 @@ import { CreateBlogPost } from "./pages/CreateBlogPost/CreateBlogPost";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
 import { PostId } from "./pages/PostId/PostId";
-import { PostList } from "./pages/PostList/PostList";
 import { Register } from "./pages/Register/Register";
 import GlobalStyle from "./styles/global.js";
 
@@ -22,10 +21,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/post/category/:id",
-        element: <PostList />,
-      },
+      // {
+      //   path: "/post/category/:id",
+      //   element: <PostList />,
+      // },
       {
         path: "/post/categoryId/:id",
         element: <PostId />,

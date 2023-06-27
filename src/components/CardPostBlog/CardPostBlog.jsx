@@ -156,6 +156,7 @@ export const CardPostBlog = ({ postBlog, itemsPerPage }) => {
       </HeadAndText>
       <Category>
         <CategoryBadge>Tecnologia</CategoryBadge>
+
         {postBlog.idUser === userObj._id && (
           <DeleteMenu idPost={postBlog.id} setMutate={setIsMutate} />
         )}

@@ -1,5 +1,4 @@
 import { api } from "./api/api";
-import { configToken } from "./token";
 
 export function getAllPostsCategory(id) {
   const response = api.get(`/category/${id}`);
@@ -32,18 +31,15 @@ export async function getLastPosts(url) {
   return response.data;
 }
 
+const newToken = localStorage.getItem("@Auth:token");
+
 export async function createPostCommentBlog(id, text) {
-  const response = await api.patch(
-    `/post/comment/${id}`,
-    {
-      comment: text,
-    },
-    configToken
-  );
+  const response = await api.patch(`/post/comment/${id}`, {
+    comment: text,
+  });
   return response;
 }
 
-const newToken = localStorage.getItem("@Auth:token");
 export async function createPostWithinTheBlog(
   title,
   description,

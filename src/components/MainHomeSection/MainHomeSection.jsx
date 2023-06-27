@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
@@ -32,37 +32,15 @@ const imgCarousel = [
 ];
 
 export const MainHomeSection = () => {
-  // const [paginationPost, setPaginationPosts] = useState([]);
-  // const [limitMorePost, setLimitMorePost] = useState(12);
   const [isMutate, setIsMutate] = useState(false);
-  // const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {}, []);
 
   const { data, mutate } = useGetLastPost("/post/top");
   if (isMutate) {
     mutate("/post/top");
     setIsMutate(false);
   }
-
-  // useEffect(() => {
-  //   paginationPosts();
-  // }, []);
-
-  // console.log("resultado pagination", paginationPost, paginationPost.results);
-  // const paginationPosts = async (limit, offset) => {
-  //   const response = await getLastPosts(
-  //     `/post?limit=${limit}&offset=${offset}`
-  //   );
-  //   setPaginationPosts(response);
-  // };
-
-  // const handlePagination = () => {
-  //   let offset = 0;
-  //   if (paginationPost.nextUrl) setLimitMorePost(oldValue => oldValue + 6);
-  //   if (paginationPost.results?.length === paginationPost.total)
-  //     setDisabled(true);
-
-  //   paginationPosts(limitMorePost, offset);
-  // };
 
   return (
     <>
@@ -91,19 +69,6 @@ export const MainHomeSection = () => {
             </Container>
           </MainContainerLastPosts>
           <AllPosts />
-          {/* <SectionRowAndHeader>
-            <TitleSection>Todos as postagens</TitleSection>
-            <ContainerRowPosts>
-              {paginationPost.results?.map(item => (
-                <CardPostBlog key={item.id} postBlog={item} />
-              ))}
-            </ContainerRowPosts>
-            <DivButton>
-              <Button disabled={disabled} onClick={handlePagination}>
-                Carregar mais posts
-              </Button>
-            </DivButton>
-          </SectionRowAndHeader> */}
         </>
       ) : (
         <NotFountPost />

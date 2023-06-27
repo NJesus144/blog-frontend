@@ -22,9 +22,11 @@ import {
 export const TopPost = ({ data, setIsMutate }) => {
   const loggedInUser = localStorage.getItem("@Auth:user");
   const userObj = JSON.parse(loggedInUser);
+
   useEffect(() => {
     if (userObj._id === data?.idUser) return;
   }, [userObj._id, data?.idUser]);
+
   return (
     <BlogPostCard>
       <ContainerImg image={data?.banner} to={`/post/categoryId/${data?.id}`} />

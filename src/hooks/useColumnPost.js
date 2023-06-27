@@ -6,12 +6,3 @@ export function useColumnPost(url) {
 
   return { data, error, isLoading, mutate };
 }
-
-// export function useFetch(id, token) {
-//   const { data, error, isLoading, mutate } = useSWR(
-//     [`/post/${id}`, token],
-//     ([url, token]) => getUpdatedPost(url, token)
-//   );
-
-//   return { data, error, isLoading, mutate };
-// }

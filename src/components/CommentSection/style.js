@@ -4,8 +4,10 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1000px;
   margin-bottom: 50px;
+  margin: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 20px;
+  margin-bottom: 100px;
   display: flex;
   border-radius: 10px;
   flex-direction: column;

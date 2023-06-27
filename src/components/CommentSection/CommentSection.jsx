@@ -7,7 +7,10 @@ import { configToken } from "../../services/token";
 import { EditComment } from "../EditComment";
 import { BoxButton, BoxComment, Btn, Container, Span } from "./style";
 
-export const CommentSection = ({ post, idComment, text }) => {
+export const CommentSection = ({ post, idComment, text, userId }) => {
+  const loggedInUser = localStorage.getItem("@Auth:user");
+  const userObj = JSON.parse(loggedInUser);
+
   const { mutate } = useFetch(post.id, configToken);
   const [editPost, setEditPost] = useState(false);
 
@@ -23,10 +26,7 @@ export const CommentSection = ({ post, idComment, text }) => {
     }
   };
 
-  const handleEdit = idComment => {
-    setEditPost(true);
-    console.log(idComment);
-  };
+  const handleEdit = () => setEditPost(true);
 
   return (
     <>
@@ -36,11 +36,16 @@ export const CommentSection = ({ post, idComment, text }) => {
             <BoxComment>
               <Span>{text}</Span>
             </BoxComment>
+
             <BoxButton>
-              <Btn onClick={() => handleDeleteComment(idComment)}>Excluir</Btn>
-              <Btn onClick={() => handleEdit(idComment, text)}>
-                Editar comentário
-              </Btn>
+              {userId === userObj._id && (
+                <>
+                  <Btn onClick={() => handleDeleteComment(idComment)}>
+                    Excluir
+                  </Btn>
+                  <Btn onClick={handleEdit}>Editar comentário</Btn>
+                </>
+              )}
             </BoxButton>
 
             {editPost && (

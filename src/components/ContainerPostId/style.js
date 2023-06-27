@@ -14,6 +14,8 @@ export const Container = styled.div`
   padding-bottom: 20px;
   padding-top: 20px;
 
+  margin: 0 auto;
+  margin-top: 100px;
   @media (max-width: 420px) {
     h1 {
       font-size: 32px;

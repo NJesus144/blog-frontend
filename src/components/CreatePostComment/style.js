@@ -23,6 +23,8 @@ export const Textarea = styled.textarea`
 
 export const Form = styled.form`
   max-width: 1000px;
+  margin: auto;
+  margin-top: 100px;
 
   button {
     width: 250px;
@@ -33,6 +35,12 @@ export const Form = styled.form`
       padding: 10px;
     }
   }
+`;
+
+export const H2 = styled.h2`
+  color: #434955;
+  font-family: "Roboto";
+  margin-bottom: 20px;
 `;
 
 // export const Button = styled.button`
