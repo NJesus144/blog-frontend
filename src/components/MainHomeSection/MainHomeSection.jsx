@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetLastPost } from "../../hooks/getLastPost";
@@ -34,9 +34,8 @@ const imgCarousel = [
 export const MainHomeSection = () => {
   const [isMutate, setIsMutate] = useState(false);
 
-  useEffect(() => {}, []);
-
   const { data, mutate } = useGetLastPost("/post/top");
+
   if (isMutate) {
     mutate("/post/top");
     setIsMutate(false);

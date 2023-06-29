@@ -12,7 +12,8 @@ import {
 } from "./style";
 
 export const Header = () => {
-  const [isValidUser, setIsValidUser] = useState("");
+  const [isValidUser, setIsValidUser] = useState(null);
+  const [userLogged, setUserLogged] = useState(false);
   const navigate = useNavigate();
   const storageUser = localStorage.getItem("@Auth:user");
   const user = JSON.parse(storageUser);
@@ -25,18 +26,24 @@ export const Header = () => {
     validToken();
   }, []);
 
-  if (!user || null) return navigate("login");
+  useEffect(() => {
+    if (user) setUserLogged(true);
+  }, [user]);
+
+  console.log("é valido", isValidUser, "usuario", user);
+
+  if (!user || null) return navigate("/login");
+  if (isValidUser === false) return navigate("/login");
 
   const removeUser = () => {
     localStorage.removeItem("@Auth:user");
     localStorage.removeItem("@Auth:token");
-
-    const userLogado = localStorage.getItem("@Auth:user");
+    setIsValidUser(false);
+    const userLoggedIn = localStorage.getItem("@Auth:user");
     const tokenUser = localStorage.getItem("@Auth:token");
 
-    if (!userLogado && !tokenUser) {
+    if (!userLoggedIn || !tokenUser || isValidUser === false)
       return navigate("/login");
-    }
   };
 
   return (
@@ -45,7 +52,7 @@ export const Header = () => {
         <Logo to={`/`}>Home</Logo>
 
         <Nav>
-          {isValidUser && user !== null ? (
+          {userLogged ? (
             <>
               <StyledParagraph>{`Olá, @${user.username}!`}</StyledParagraph>
               <NavLink to={`/post/createblog`}>Criar postagem</NavLink>

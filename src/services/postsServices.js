@@ -31,8 +31,6 @@ export async function getLastPosts(url) {
   return response.data;
 }
 
-const newToken = localStorage.getItem("@Auth:token");
-
 export async function createPostCommentBlog(id, text) {
   const response = await api.patch(`/post/comment/${id}`, {
     comment: text,
@@ -44,7 +42,8 @@ export async function createPostWithinTheBlog(
   title,
   description,
   text,
-  banner
+  banner,
+  token
 ) {
   const response = await api.post(
     "/post",
@@ -54,7 +53,7 @@ export async function createPostWithinTheBlog(
       text,
       banner,
     },
-    newToken
+    token
   );
   return response.data;
 }

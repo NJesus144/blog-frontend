@@ -6,7 +6,10 @@ import { Input } from "../../components/inputs/Input";
 import { H2 } from "../../components/typography/H2";
 import { ContainerFom } from "../../layout/ContainerForm/Index";
 import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
+// import { api } from "../../services/api/api";
 import { createPostWithinTheBlog } from "../../services/postsServices";
+// import { configToken } from "../../services/token";
+import { SuccessMessage } from "../../components/SuccessMessage/SuccessMessage";
 
 export const Textarea = styled.textarea`
   resize: none;
@@ -49,13 +52,15 @@ export const CreateBlogPost = () => {
   const [description, setDescription] = useState("");
   const [text, setText] = useState("");
   const [banner, setBanner] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleForm = async e => {
     e.preventDefault();
 
     if (!title || !description || !text)
       return alert("Campos precisam ser preenchidos");
-
+    const newToken = localStorage.getItem("@Auth:token");
+    console.log("token criacao", JSON.stringify(newToken));
     try {
       // api.defaults.headers.Authorization = `Bearer ${configToken}`;
 
@@ -63,9 +68,16 @@ export const CreateBlogPost = () => {
         title,
         description,
         text,
-        banner
+        banner,
+        newToken
       );
-      console.log(res);
+      if (res === "Created") {
+        setSuccess(true);
+
+        setTimeout(() => {
+          return navigate("/");
+        }, 3000);
+      }
     } catch (err) {
       if (err.response.data === "Unauthorized") {
         return navigate("/login");
@@ -76,6 +88,10 @@ export const CreateBlogPost = () => {
   return (
     <ImageWithSpace>
       <ContainerFom>
+        <div>
+          {success && <SuccessMessage>Post criado com sucesso!</SuccessMessage>}
+          {/* {success && <ErrorField>Usuário e/ou senha inválidos!</ErrorField>} */}
+        </div>
         <H2>Faça sua postagem</H2>
         <Form onSubmit={handleForm}>
           <Input

@@ -17,9 +17,16 @@ export const AllPosts = () => {
 
   const { data } = useFetchAllPosts(`/post?limit=${itemsPerPage}&offset=0`);
 
+  const loggedInUser = localStorage.getItem("@Auth:user");
+  const userObj = JSON.parse(loggedInUser);
+
+  useEffect(() => {
+    if (userObj._id === data?.idUser) return;
+  }, [userObj._id, data?.idUser]);
+
   useEffect(() => {
     if (itemsPerPage >= data?.total) setDisabled(true);
-  }, [data]);
+  }, [itemsPerPage, data]);
 
   const handlePagination = () => {
     setItemsPerPage(itemsPerPage + itemsPerPage);

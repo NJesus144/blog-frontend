@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -124,10 +124,17 @@ const CategoryBadge = styled.div`
 const BoxIcon = styled(Link)`
   color: #1a1a1a;
 `;
-const loggedInUser = localStorage.getItem("@Auth:user");
-const userObj = JSON.parse(loggedInUser);
 
 export const CardPostBlog = ({ postBlog, itemsPerPage }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const loggedInUser = localStorage.getItem("@Auth:user");
+  const userObj = JSON.parse(loggedInUser);
+
+  useEffect(() => {
+    if (userObj._id === postBlog.idUser) setMenuOpen(true);
+  }, [userObj._id, postBlog?.idUser]);
+
   const [isMutate, setIsMutate] = useState(false);
   const { mutate } = useFetchAllPosts(`/post?limit=${itemsPerPage}&offset=0`);
   if (isMutate) {
@@ -157,7 +164,7 @@ export const CardPostBlog = ({ postBlog, itemsPerPage }) => {
       <Category>
         <CategoryBadge>Tecnologia</CategoryBadge>
 
-        {postBlog.idUser === userObj._id && (
+        {menuOpen && (
           <DeleteMenu idPost={postBlog.id} setMutate={setIsMutate} />
         )}
       </Category>
