@@ -18,8 +18,8 @@ Projeto feito consumindo a API do blog, com opções de criar e deletar post, cr
 
 ## Página principal e página da postagem
 <div align="center">
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/734dd930-e255-452c-b7b0-854197af5284" width="500px"/>
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/f4b807d4-8521-4e37-9694-cda603a8d3b6" width="500px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/734dd930-e255-452c-b7b0-854197af5284" width="400px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/f4b807d4-8521-4e37-9694-cda603a8d3b6" width="400px"/>
 </div>
 
 
@@ -27,8 +27,7 @@ Projeto feito consumindo a API do blog, com opções de criar e deletar post, cr
 ![print2 2](https://github.com/NJesus144/blog-frontend/assets/94402903/48a6bdd7-903d-43e2-827a-6bfec7584cd1)
 
 ## Cadastro / Login
-<div display="flex">
- 
+<div align="center">
   <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/2656d27b-4473-4db6-ae46-fbbc8766fc3f3" width="500px"/>
   <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/194da308-9c00-4216-a4b4-90770101aad5" width="500px"/>
 </div>
