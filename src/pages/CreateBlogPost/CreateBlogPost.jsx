@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { ErrorField } from "../../components/ErrorMessage/ErrorField";
 import { Button } from "../../components/inputs/Button";
 import { Input } from "../../components/inputs/Input";
 import { H2 } from "../../components/typography/H2";
 import { ContainerFom } from "../../layout/ContainerForm/Index";
 import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
-// import { api } from "../../services/api/api";
+import { api } from "../../services/api/api";
 import { createPostWithinTheBlog } from "../../services/postsServices";
 // import { configToken } from "../../services/token";
 import { SuccessMessage } from "../../components/SuccessMessage/SuccessMessage";
@@ -53,29 +54,28 @@ export const CreateBlogPost = () => {
   const [text, setText] = useState("");
   const [banner, setBanner] = useState("");
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleForm = async e => {
     e.preventDefault();
 
-    if (!title || !description || !text)
-      return alert("Campos precisam ser preenchidos");
-    const newToken = localStorage.getItem("@Auth:token");
-    console.log("token criacao", JSON.stringify(newToken));
-    try {
-      // api.defaults.headers.Authorization = `Bearer ${configToken}`;
+    if (!title || !description || !text || !banner) return setError(true);
 
+    try {
+      const tokenUser = localStorage.getItem("@Auth:token");
+
+      api.defaults.headers.Authorization = `Bearer ${tokenUser}`;
       const res = await createPostWithinTheBlog(
         title,
         description,
         text,
-        banner,
-        newToken
+        banner
       );
       if (res === "Created") {
         setSuccess(true);
-
+        setError(false);
         setTimeout(() => {
-          return navigate("/");
+          return console.log("ok");
         }, 3000);
       }
     } catch (err) {
@@ -90,7 +90,9 @@ export const CreateBlogPost = () => {
       <ContainerFom>
         <div>
           {success && <SuccessMessage>Post criado com sucesso!</SuccessMessage>}
-          {/* {success && <ErrorField>Usuário e/ou senha inválidos!</ErrorField>} */}
+          {error && (
+            <ErrorField>Todos os campos precisam ser preenchidos!</ErrorField>
+          )}
         </div>
         <H2>Faça sua postagem</H2>
         <Form onSubmit={handleForm}>

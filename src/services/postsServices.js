@@ -42,18 +42,13 @@ export async function createPostWithinTheBlog(
   title,
   description,
   text,
-  banner,
-  token
+  banner
 ) {
-  const response = await api.post(
-    "/post",
-    {
-      title,
-      description,
-      text,
-      banner,
-    },
-    token
-  );
+  const response = await api.post("/post", {
+    title,
+    description,
+    text,
+    banner,
+  });
   return response.data;
 }
