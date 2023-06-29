@@ -23,11 +23,11 @@ const imgCarousel = [
   },
   {
     id: 2,
-    img: "https://images2.alphacoders.com/117/1178869.jpg",
+    img: "https://wallpaperaccess.com/full/5393409.jpg",
   },
   {
     id: 3,
-    img: "https://images.alphacoders.com/468/468462.jpg",
+    img: "https://wallpapercave.com/wp/wp8725088.jpg",
   },
 ];
 
