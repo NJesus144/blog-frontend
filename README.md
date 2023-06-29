@@ -28,14 +28,14 @@ Projeto feito consumindo a API do blog, com opções de criar e deletar post, cr
 
 ## Cadastro / Login
 <div align="center">
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/2656d27b-4473-4db6-ae46-fbbc8766fc3f3" width="500px"/>
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/194da308-9c00-4216-a4b4-90770101aad5" width="500px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/2656d27b-4473-4db6-ae46-fbbc8766fc3f3" width="400px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/194da308-9c00-4216-a4b4-90770101aad5" width="400px"/>
 </div>
 
 ## Sessão de comentário
 <div align="center">
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/230793fe-fc53-448c-88ee-12d8abfe60a1" width="500px"/>
-  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/68bf49f0-517e-4fad-95f9-5d2cce5da1f2" width="500px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/230793fe-fc53-448c-88ee-12d8abfe60a1" width="400px"/>
+  <img src="https://github.com/NJesus144/blog-frontend/assets/94402903/68bf49f0-517e-4fad-95f9-5d2cce5da1f2" width="400px"/>
 </div
 
 
