@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import { ContainerPost } from "../../components/ContainerPost/ContainerPost";
 
-import { ContainerMainSection } from "../../layout/ContainerMainSection";
 import { getAllPostsCategory } from "../../services/postsServices";
 
 const Container = styled.div`
@@ -14,6 +13,11 @@ const Container = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 50px;
+`;
+
+const ContainerMainSection = styled.div`
+  max-width: 1200px;
+  margin: auto;
 `;
 
 export const PostList = () => {
