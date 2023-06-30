@@ -75,7 +75,7 @@ export const CreateBlogPost = () => {
         setSuccess(true);
         setError(false);
         setTimeout(() => {
-          return navigate("/");
+          return console.log("ok");
         }, 3000);
       }
     } catch (err) {
