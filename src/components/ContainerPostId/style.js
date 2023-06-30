@@ -43,6 +43,11 @@ export const Container = styled.div`
   }
 `;
 
+export const ContainerMainSection = styled.div`
+  max-width: 1200px;
+  margin: auto;
+`;
+
 export const StyleParagraph = styled.p`
   color: #333333;
   font-family: "inter";

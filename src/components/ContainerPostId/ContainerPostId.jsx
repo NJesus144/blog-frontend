@@ -1,13 +1,13 @@
-import { ContainerMainSection } from "../../layout/ContainerMainSection";
 import { CommentSection } from "../CommentSection/CommentSection";
 import { CreatePostComment } from "../CreatePostComment/CreatePostComment";
 import {
   Container,
+  ContainerMainSection,
   Description,
   DivDescription,
   MainTitle,
-  StyledImage,
   StyleParagraph,
+  StyledImage,
 } from "./style";
 
 export const ContainerPostId = ({ post }) => {
