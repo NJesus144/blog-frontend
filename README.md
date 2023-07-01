@@ -1,5 +1,7 @@
 # EM CONSTRUÇÃO... 🚧🚧
 
+# Deploy Frontend Netlify  
+<a href="blogmernstack.netlify.app">blogmernstack.netlify.app</a>
 
 # Blog
 - Front feito em React.
