@@ -25,14 +25,13 @@ export const PostList = () => {
 
   const { id } = useParams();
 
-  const findAllPostsForCategory = async () => {
-    const response = await getAllPostsCategory(id);
-    setAllPosts(response.data);
-  };
-
   useEffect(() => {
+    const findAllPostsForCategory = async () => {
+      const response = await getAllPostsCategory(id);
+      setAllPosts(response.data);
+    };
     findAllPostsForCategory();
-  }, []);
+  }, [id]);
 
   return (
     <>

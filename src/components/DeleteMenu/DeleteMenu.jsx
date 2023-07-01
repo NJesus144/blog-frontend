@@ -73,10 +73,6 @@ export const DeleteMenu = ({ idPost, setMutate }) => {
     }
   };
 
-  // const handleClick = onClick => {
-  //   setShow(false);
-  //   onClick();
-  // };
   return (
     <StyleContainerMenu>
       <Dots src={DotsMenu} height="20" onClick={handleDots} />

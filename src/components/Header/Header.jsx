@@ -30,8 +30,6 @@ export const Header = () => {
     if (user) setUserLogged(true);
   }, [user]);
 
-  console.log("é valido", isValidUser, "usuario", user);
-
   if (!user || null) return navigate("/login");
   if (isValidUser === false) return navigate("/login");
 
