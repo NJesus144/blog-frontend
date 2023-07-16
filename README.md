@@ -1,4 +1,4 @@
-# EM CONSTRUÇÃO... 🚧🚧
+
 
 # Deploy Frontend Netlify  
 <a href="https://blogmernstack.netlify.app" target="_blank">blogmernstack.netlify.app</a>
