@@ -5,8 +5,8 @@ export function getAllPostsCategory(id) {
   return response;
 }
 
-export function getPostById(id, configToken) {
-  const response = api.get(`/post/${id}`, configToken);
+export function getPostById(id) {
+  const response = api.get(`/post/${id}`);
   return response;
 }
 

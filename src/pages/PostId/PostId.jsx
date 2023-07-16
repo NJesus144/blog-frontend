@@ -4,7 +4,6 @@ import { CommentSection } from "../../components/CommentSection/CommentSection";
 import { CreatePostComment } from "../../components/CreatePostComment/CreatePostComment";
 import { api } from "../../services/api/api";
 import { getPostById } from "../../services/postsServices";
-import { configToken } from "../../services/token";
 
 import {
   Container,
@@ -21,11 +20,11 @@ export const PostId = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const tokenUser = localStorage.getItem("@Auth:token");
-    api.defaults.headers.Authorization = `Bearer ${tokenUser}`;
     try {
+      const tokenUser = localStorage.getItem("@Auth:token");
+      api.defaults.headers.Authorization = `Bearer ${tokenUser}`;
       const fetchPostId = async () => {
-        const response = await getPostById(id, configToken);
+        const response = await getPostById(id);
         setPostId(response.data);
       };
 
