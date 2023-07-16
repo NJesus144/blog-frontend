@@ -20,5 +20,5 @@ export const PostId = () => {
     fetchPostId();
   });
 
-  return <>{<ContainerPostId post={postId} />}</>;
+  return <ContainerPostId post={postId} />;
 };

@@ -14,15 +14,15 @@ export const ContainerPostId = ({ post }) => {
   return (
     <ContainerMainSection>
       <Container>
-        <MainTitle>{post.title}</MainTitle>
+        <MainTitle>{post?.title}</MainTitle>
         <StyleParagraph>
           <span>Por </span>
-          {post.username}
+          {post?.username}
         </StyleParagraph>
-        <StyledImage image={post.banner} />
+        <StyledImage image={post?.banner} />
 
         <DivDescription>
-          <Description>{post.text}</Description>
+          <Description>{post?.text}</Description>
         </DivDescription>
       </Container>
 
