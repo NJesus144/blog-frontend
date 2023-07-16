@@ -16,7 +16,7 @@ const Ph = styled(Link)`
   color: blue;
 `;
 
-export const Register = () => {
+export const CreateAnAccount = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");

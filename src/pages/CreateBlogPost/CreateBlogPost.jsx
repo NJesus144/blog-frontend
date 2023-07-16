@@ -9,7 +9,6 @@ import { ContainerFom } from "../../layout/ContainerForm/Index";
 import { ImageWithSpace } from "../../layout/ImageWithSpace.jsx/ImageWithSpace";
 import { api } from "../../services/api/api";
 import { createPostWithinTheBlog } from "../../services/postsServices";
-// import { configToken } from "../../services/token";
 import { SuccessMessage } from "../../components/SuccessMessage/SuccessMessage";
 
 export const Textarea = styled.textarea`

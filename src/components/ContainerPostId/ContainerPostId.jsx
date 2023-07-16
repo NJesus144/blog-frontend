@@ -27,15 +27,16 @@ export const ContainerPostId = ({ post }) => {
       </Container>
 
       <CreatePostComment post={post} />
-      {post.comments.map(commentBlog => (
-        <CommentSection
-          key={commentBlog.idComment}
-          post={post}
-          userId={commentBlog.userId}
-          idComment={commentBlog.idComment}
-          text={commentBlog.comment}
-        />
-      ))}
+      {post.comments?.length > 0 &&
+        post.comments.map(commentBlog => (
+          <CommentSection
+            key={commentBlog.idComment}
+            post={post}
+            userId={commentBlog.userId}
+            idComment={commentBlog.idComment}
+            text={commentBlog.comment}
+          />
+        ))}
     </ContainerMainSection>
   );
 };

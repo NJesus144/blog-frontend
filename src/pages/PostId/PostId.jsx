@@ -1,26 +1,24 @@
-import { useContext, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ContainerPostId } from "../../components/ContainerPostId/ContainerPostId";
-import { AuthContext } from "../../contexts/authContext";
-import { useFetch } from "../../hooks/useFetch";
-import { configToken } from "../../services/token";
+import { api } from "../../services/api/api";
+import { getPostById } from "../../services/postsServices";
 
 export const PostId = () => {
+  const [postId, setPostId] = useState([]);
   const { id } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    loadingStoreData();
+    const tokenUser = localStorage.getItem("@Auth:token");
+    api.defaults.headers.Authorization = `Bearer ${tokenUser}`;
+
+    const fetchPostId = async () => {
+      const response = await getPostById(id);
+      setPostId(response.data);
+    };
+
+    fetchPostId();
   });
 
-  const { signed, loadingStoreData } = useContext(AuthContext);
-  const { data, isLoading, error } = useFetch(id, configToken);
-
-  if (isLoading) return console.log("carregando...");
-  if (error) {
-    if (error.response.data.message === "Token invalid!")
-      return navigate("/login");
-  }
-
-  return <>{signed && <ContainerPostId post={data.data} />}</>;
+  return <>{<ContainerPostId post={postId} />}</>;
 };

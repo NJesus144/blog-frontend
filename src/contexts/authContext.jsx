@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
         email: email,
         password: password,
       });
-      console.log(data);
+
       if (data.error) {
         console.log(data.error);
       } else {
